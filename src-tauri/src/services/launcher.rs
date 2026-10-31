@@ -465,7 +465,10 @@ pub fn build_launch_args_debug(instance: &Instance) -> Result<String, String> {
         format!("-Dminecraft.assets.root={}", assets),
         "-Dfml.ignoreInvalidMinecraftCertificates=true".to_string(),
         "-Dfml.ignorePatchDiscrepancies=true".to_string(),
-        format!("-Dminecraft.launcher.version=CraftCraft Launcher v0.1.0"),
+        format!(
+            "-Dminecraft.launcher.version=CraftCraft Launcher {}",
+            env!("CARGO_PKG_VERSION")
+        ),
         format!("-Dminecraft.launcher.brand=CraftCraft Launcher"),
         format!("-Dminecraft.client.name={}", instance.account_name),
         format!("-Dminecraft.client.id={}", "offline"),
