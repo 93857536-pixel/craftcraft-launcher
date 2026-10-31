@@ -21,13 +21,24 @@ export default function WizardPage({ onDone }: P) {
   const [account, setAccount] = useState('Player');
   const [memoryMax, setMemoryMax] = useState(6144);
   const [versions, setVersions] = useState<MojangVersionInfo[]>([]);
+  const [loadingVersions, setLoadingVersions] = useState(true);
+  const [versionLoadFailed, setVersionLoadFailed] = useState(false);
   const [javas, setJavas] = useState<JavaVersion[]>([]);
   const [downloading, setDownloading] = useState<string | null>(null);
   const [langs, setLangs] = useState<GameLanguage[]>([]);
   const [lang, setLang] = useState<string>('');
+  const [showSnapshots, setShowSnapshots] = useState(false);
 
   useEffect(() => {
-    listMinecraftVersions().then((v) => setVersions(v.filter((x) => x.type === 'release'))).catch(() => {});
+    listMinecraftVersions()
+      .then((v) => {
+        setVersions(v);
+        // 默认选中最新正式版
+        const firstRelease = v.find((x) => x.type === 'release');
+        if (firstRelease) setVer((cur) => cur || firstRelease.id);
+      })
+      .catch(() => setVersionLoadFailed(true))
+      .finally(() => setLoadingVersions(false));
     listJava().then(setJavas).catch(() => {});
     gameLanguages().then(setLangs).catch(() => {});
     // 按系统界面语言预选游戏语言（如 zh-CN → zh_cn）
@@ -37,10 +48,24 @@ export default function WizardPage({ onDone }: P) {
   }, []);
 
   const picked = useMemo(() => versions.find((v) => v.id === ver), [versions, ver]);
+  // 按 Mojang 官方 type 分组：release / snapshot / old_beta / old_alpha
+  const groups = useMemo(() => {
+    const g = { releases: [] as MojangVersionInfo[], snapshots: [] as MojangVersionInfo[],
+      oldBeta: [] as MojangVersionInfo[], oldAlpha: [] as MojangVersionInfo[] };
+    for (const v of versions) {
+      if (v.type === 'release') g.releases.push(v);
+      else if (v.type === 'snapshot') g.snapshots.push(v);
+      else if (v.type === 'old_beta') g.oldBeta.push(v);
+      else if (v.type === 'old_alpha') g.oldAlpha.push(v);
+    }
+    return g;
+  }, [versions]);
+  const { releases, snapshots, oldBeta, oldAlpha } = groups;
+  const latest = releases[0]?.id;
   const hasJava = javas.length > 0;
 
   const start = () => {
-    if (!name.trim()) return;
+    if (!name.trim() || !ver) return;
     createInstance({
       name: name.trim(),
       version: picked?.id ?? ver,
@@ -73,16 +98,61 @@ export default function WizardPage({ onDone }: P) {
             </div>
             <div>
               <label>{t('wizard.version')}
-                <input value={ver} onChange={(e) => setVer(e.target.value)} placeholder={t('wizard.versionPlaceholder')} />
+                {versionLoadFailed ? (
+                  <input value={ver} onChange={(e) => setVer(e.target.value)} placeholder={t('wizard.versionPlaceholder')} required />
+                ) : (
+                <select value={ver} onChange={(e) => setVer(e.target.value)} required>
+                  <option value="">{t('wizard.selectVersion')}</option>
+                  {releases.length > 0 && (
+                    <optgroup label={t('wizard.releases')}>
+                      {releases.map((v) => (
+                        <option key={v.id} value={v.id}>
+                          {v.id}{v.id === latest ? ' ★' : ''}
+                        </option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {showSnapshots && snapshots.length > 0 && (
+                    <optgroup label={t('wizard.snapshots')}>
+                      {snapshots.map((v) => (
+                        <option key={v.id} value={v.id}>{v.id}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {oldBeta.length > 0 && (
+                    <optgroup label={t('wizard.oldBeta')}>
+                      {oldBeta.map((v) => (
+                        <option key={v.id} value={v.id}>{v.id}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                  {oldAlpha.length > 0 && (
+                    <optgroup label={t('wizard.oldAlpha')}>
+                      {oldAlpha.map((v) => (
+                        <option key={v.id} value={v.id}>{v.id}</option>
+                      ))}
+                    </optgroup>
+                  )}
+                </select>
+                )}
               </label>
               {picked && (
                 <div className="text-xs mt-8" style={{ color: 'var(--text-dim)' }}>
                   <span className="badge green">{picked.type}</span> · {picked.id}
                 </div>
               )}
-              {!picked && ver && (
-                <div className="text-xs mt-8" style={{ color: 'var(--warn)' }}>⚠ {t('wizard.notInManifest')}</div>
+              {loadingVersions && (
+                <div className="text-xs mt-8" style={{ color: 'var(--text-dim)' }}>…</div>
               )}
+              <label className="text-xs mt-8" style={{ display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', color: 'var(--text-dim)' }}>
+                <input
+                  type="checkbox"
+                  checked={showSnapshots}
+                  onChange={(e) => setShowSnapshots(e.target.checked)}
+                  style={{ width: 'auto' }}
+                />
+                {t('wizard.showSnapshots', { n: String(snapshots.length) })}
+              </label>
             </div>
             <div>
               <label>{t('wizard.loader')}

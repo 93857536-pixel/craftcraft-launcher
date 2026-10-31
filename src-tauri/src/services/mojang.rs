@@ -684,3 +684,45 @@ impl MojangClient {
         }
     }
 }
+
+#[cfg(test)]
+mod manifest_tests {
+    use super::*;
+
+    /// 真实网络集成测试：确认版本清单能拉到全部四类版本，
+    /// 且新建实例下拉不会只剩 release（默认标注 #[ignore]，手动 --ignored 跑）。
+    #[tokio::test]
+    #[ignore = "requires network"]
+    async fn version_manifest_has_all_types() {
+        let dir = std::env::temp_dir().join("cc-manifest-test");
+        let client = MojangClient::new(&dir);
+        let list = client.fetch_version_list().await.expect("manifest fetch");
+
+        assert!(list.len() > 900, "expected >900 versions, got {}", list.len());
+
+        let count = |t: &str| list.iter().filter(|v| v.r#type.as_deref() == Some(t)).count();
+        let releases = count("release");
+        let snapshots = count("snapshot");
+        let beta = count("old_beta");
+        let alpha = count("old_alpha");
+
+        assert!(releases > 50, "releases too few: {releases}");
+        assert!(snapshots > 100, "snapshots too few: {snapshots}");
+        assert!(beta > 0, "no old_beta entries");
+        assert!(alpha > 0, "no old_alpha entries");
+
+        // 清单按发布时间排序，首项通常是更新的快照；但按 type 过滤后
+        // 第一个 release 必须是最新正式版（下拉框默认选中它）。
+        let first_release = list
+            .iter()
+            .find(|v| v.r#type.as_deref() == Some("release"))
+            .expect("at least one release");
+        assert!(
+            first_release.id.chars().next().map(|c| c.is_ascii_digit()).unwrap_or(false),
+            "unexpected newest release id: {}",
+            first_release.id
+        );
+        // 每个版本都必须带 type，否则前端无法分组
+        assert!(list.iter().all(|v| v.r#type.is_some()), "version without type");
+    }
+}
