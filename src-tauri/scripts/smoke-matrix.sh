@@ -5,6 +5,8 @@
 set -u
 cd "$(dirname "$0")/../.." || exit 1  # go to project root
 SMOKE=./src-tauri/target/release/smoke
+# smoke 受 dev-tools feature 门控（避免被 tauri bundle 打进用户包），这里显式构建
+(cd src-tauri && cargo build --release --features dev-tools --bin smoke) || exit 1
 INSTANCE="/Users/linminhao/Library/Application Support/CraftCraft/instances/smoke-test"
 LOG=~/Desktop/craftcraft-matrix.log
 : > "$LOG"

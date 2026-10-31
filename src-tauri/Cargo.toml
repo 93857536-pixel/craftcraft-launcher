@@ -33,7 +33,16 @@ md-5 = "0.10"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
+# 开发/自测工具开关：不加这个 feature 时，smoke 与 relay-push 不会被构建，
+# 也就不会被 tauri bundle 打进 .app（否则用户会拿到 4.8MB 的测试二进制）。
+dev-tools = []
 
 [[bin]]
 name = "relay-push"
 path = "src/bin/relay_push.rs"
+required-features = ["dev-tools"]
+
+[[bin]]
+name = "smoke"
+path = "src/bin/smoke.rs"
+required-features = ["dev-tools"]
