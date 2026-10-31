@@ -521,6 +521,22 @@ mod language_tests {
     }
 
     #[test]
+    fn debug_preview_embeds_package_version() {
+        use crate::models::instance::Instance;
+        let mut inst = Instance::new("t", "1.21", "/tmp/g".into());
+        inst.java_path = Some("/usr/bin/java".into());
+        let cmd = build_launch_args_debug(&inst).expect("preview");
+        assert!(
+            cmd.contains(env!("CARGO_PKG_VERSION")),
+            "preview must carry the real package version, got: {cmd}"
+        );
+        assert!(
+            !cmd.contains("v0.1.0"),
+            "stale hardcoded version leaked into preview: {cmd}"
+        );
+    }
+
+    #[test]
     fn injects_language_flag_when_set() {
         let args = args_for("1.21", Some("tlh_aa"));
         let pos = args.iter().position(|a| a == "--language");
