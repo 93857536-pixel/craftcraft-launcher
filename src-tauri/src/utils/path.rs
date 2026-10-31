@@ -18,19 +18,15 @@ pub fn get_app_data_dir() -> PathBuf {
     home_dir().join(".config/CraftCraft")
 }
 
-#[cfg(target_os = "macos")]
+/// Resolve the `java` executable, handling both the flat JDK layout
+/// (`<home>/bin/java`) and the macOS bundle layout (`<home>/Contents/Home/bin/java`).
 pub fn get_java_binary_path(java_home: &PathBuf) -> PathBuf {
-    java_home.join("bin").join("java")
-}
-
-#[cfg(target_os = "windows")]
-pub fn get_java_binary_path(java_home: &PathBuf) -> PathBuf {
-    java_home.join("bin").join("java.exe")
-}
-
-#[cfg(not(any(target_os = "macos", target_os = "windows")))]
-pub fn get_java_binary_path(java_home: &PathBuf) -> PathBuf {
-    java_home.join("bin").join("java")
+    let exe = if cfg!(target_os = "windows") { "java.exe" } else { "java" };
+    let bundled = java_home.join("Contents").join("Home").join("bin").join(exe);
+    if bundled.exists() {
+        return bundled;
+    }
+    java_home.join("bin").join(exe)
 }
 
 pub fn home_dir() -> PathBuf {

@@ -28,6 +28,21 @@ impl JavaManager {
 
     /// Install a Temurin JDK into the managed dir. For now, download the Adoptium tarball.
     pub async fn install(&self, version: &str) -> Result<JavaVersion> {
+        let target_dir = self.javas_dir.join(format!("temurin-{version}"));
+        if target_dir.exists() {
+            return Ok(self.build_entry(&target_dir, version, true));
+        }
+        // A previous run may have extracted the tarball but failed to move it.
+        if let Ok(entries) = std::fs::read_dir(&self.javas_dir) {
+            for entry in entries.flatten() {
+                let p = entry.path();
+                let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
+                if p.is_dir() && name.starts_with("jdk-") {
+                    std::fs::rename(&p, &target_dir)?;
+                    return Ok(self.build_entry(&target_dir, version, true));
+                }
+            }
+        }
         let arch = if cfg!(target_arch = "aarch64") {
             "aarch64"
         } else {
@@ -44,10 +59,6 @@ impl JavaManager {
         let url = format!(
             "https://api.adoptium.net/v3/binary/latest/{version}/ga/{os}/{arch}/jdk/hotspot/normal/eclipse",
         );
-        let target_dir = self.javas_dir.join(format!("temurin-{version}"));
-        if target_dir.exists() {
-            return Ok(self.build_entry(&target_dir, version, true));
-        }
 
         let http = reqwest::Client::new();
         let resp = http.get(&url).send().await?.bytes().await?;
@@ -62,16 +73,32 @@ impl JavaManager {
         if !status.success() {
             return Err(anyhow::anyhow!("failed to extract JDK archive"));
         }
-        // adoptium layout: jdk-<ver>_... directory
-        let entries = std::fs::read_dir(&self.javas_dir)?;
-        for entry in entries.flatten() {
+        // adoptium layout: a `jdk-<ver>+<build>` directory (or Contents/Home on macOS)
+        let mut extracted: Option<PathBuf> = None;
+        for entry in std::fs::read_dir(&self.javas_dir)?.flatten() {
             let p = entry.path();
-            if p.is_dir() && p.to_string_lossy().starts_with("jdk-") {
-                std::fs::rename(&p, &target_dir)?;
-                return Ok(self.build_entry(&target_dir, version, true));
+            if !p.is_dir() {
+                continue;
+            }
+            let name = p.file_name().and_then(|s| s.to_str()).unwrap_or("");
+            if name.starts_with("jdk-") && name != format!("temurin-{version}") {
+                extracted = Some(p);
+                break;
             }
         }
-        Err(anyhow::anyhow!("JDK extracted but could not be located"))
+        if let Some(p) = extracted {
+            // Drop a stale target from a previous partial run, then move into place.
+            if target_dir.exists() {
+                let _ = std::fs::remove_dir_all(&target_dir);
+            }
+            std::fs::rename(&p, &target_dir)?;
+            let _ = std::fs::remove_file(&archive);
+            return Ok(self.build_entry(&target_dir, version, true));
+        }
+        Err(anyhow::anyhow!(
+            "JDK extracted but no jdk-* directory found in {}",
+            self.javas_dir.display()
+        ))
     }
 
     /// Run a quick `java -version` probe to validate a path.

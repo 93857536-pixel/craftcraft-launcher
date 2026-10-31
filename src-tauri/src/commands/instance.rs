@@ -5,7 +5,6 @@ use crate::services::{
     launcher::LauncherState,
     server_store::{self, ServerStore},
     settings_store::SettingsStore,
-    mojang::MojangClient,
     InstanceStore,
 };
 use crate::models::java::{JavaRecommendation, JavaVersion};
@@ -110,7 +109,7 @@ pub fn list_java() -> Result<Vec<JavaVersion>, String> {
 }
 
 #[tauri::command]
-pub async fn install_java(launcher: State<'_, LauncherState>, version: String) -> Result<JavaVersion, String> {
+pub async fn install_java(_launcher: State<'_, LauncherState>, version: String) -> Result<JavaVersion, String> {
     let mgr = JavaManager::new();
     mgr.install(&version).await.map_err(|e| e.to_string())
 }

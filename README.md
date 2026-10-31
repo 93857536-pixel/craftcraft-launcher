@@ -1,128 +1,128 @@
 # CraftCraft Launcher
 
-> 新一代跨平台 Minecraft 启动器，超越 PCL 的体验。
+A modern, cross-platform Minecraft: Java Edition launcher built with **Rust + Tauri 2 + React**.
+比 PCL 更轻、更快，界面更现代，且不需要你手动装 Java。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![macOS](https://img.shields.io/badge/macOS-%23000000.svg?style=flat&logo=apple&logoColor=white)](#)
-[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](#)
-[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](#)
+![platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-6366F1)
+![license](https://img.shields.io/badge/license-MIT-22C55E)
+![stack](https://img.shields.io/badge/stack-Rust%20%2B%20Tauri%202%20%2B%20React-F59E0B)
 
-## ✨ 特性
+---
 
-- 🚀 **极速启动** - 秒开游戏，最小化等待
-- 📦 **智能 Java 管理** - 一键安装/切换 Java 版本
-- 🎨 **现代化 UI** - 暗色主题，视觉舒适
-- 📂 **内容库系统** - Mods、资源包、光影统一管理
-- 📝 **内嵌日志面板** - 实时查看、关键词高亮、搜索过滤
-- 🖥️ **性能仪表板** - 内存、CPU、FPS 实时监控
-- 🌐 **服务器工作台** - 收藏、历史、一键加入
-- 🔄 **一键导入** - 从 PCL/Prism 迁移数据
-- 🎮 **多实例管理** - 拖拽排序，快速克隆
-- 🔒 **完全开源** - MIT 协议，自由修改
+## 为什么不用 PCL / Prism？
 
-## 📦 安装
+| | PCL | Prism | **CraftCraft** |
+|---|---|---|---|
+| 自动下载 Java（无需手装） | ✗ | ✗ | **✓** |
+| 官方 Mojang 下载链路 | 部分 | ✓ | **✓** |
+| 内嵌实时日志 + 错误高亮 | ✗ | ✗ | **✓** |
+| 服务器状态探测（真实 TCP ping） | ✗ | ✗ | **✓** |
+| 安装包体积 | ~ | ~ | **≈10MB（Tauri 壳）** |
+| 现代暗色 UI | ✗ | ✗（Qt） | **✓** |
 
-### macOS
+---
+
+## 功能
+
+- **实例管理** — 多实例并存，各自独立的存档 / 模组 / 配置目录
+- **零手装 Java** — 内置 Temurin JDK 下载器（8 / 17 / 21），自动匹配 MC 版本所需 Java
+- **真实启动链路** — 解析 Mojang version manifest → 下载 client jar / libraries / natives / assets → 组装 JVM 参数 → 拉起进程
+- **离线可玩** — 自动生成离线 UUID，无需正版即可单人游戏
+- **实时日志** — 内嵌日志面板，2 秒轮询，ERROR/WARN 高亮
+- **服务器书签** — 保存服务器 + 真实状态探测（MOTD / 在线人数 / 版本）
+- **内存与 JVM 参数** — 每实例独立配置
+
+---
+
+## 快速开始
+
+### 下载安装
+
+从 [Releases](https://github.com/93857536-pixel/craftcraft-launcher/releases) 下载：
+
+- macOS: `CraftCraft Launcher_0.1.0_aarch64.dmg`
+- Windows: `CraftCraft Launcher_0.1.0_x64-setup.exe`
+- Linux: `.deb` / `.AppImage`
+
+首次打开（未签名）macOS 需右键 → 打开。
+
+### 从源码构建
+
 ```bash
-brew install --cask craftcraft
-```
-或从 [Releases](https://github.com/linminhao/craftcraft-launcher/releases) 下载 `.dmg`
-
-### Windows
-从 [Releases](https://github.com/linminhao/craftcraft-launcher/releases) 下载 `.exe` 安装包
-
-### Linux (Ubuntu/Debian)
-```bash
-wget https://github.com/linminhao/craftcraft-launcher/releases/download/v0.1.0/craftcraft_0.1.0_amd64.deb
-sudo dpkg -i craftcraft_0.1.0_amd64.deb
-```
-
-## 🚀 快速开始
-
-1. 安装 CraftCraft Launcher
-2. 首次启动时会自动扫描系统 Java
-3. 点击 "+" 创建新实例
-4. 选择 Minecraft 版本和加载器
-5. 点击 "启动" 开始游戏
-
-## 🛠️ 开发
-
-### 环境要求
-- Node.js >= 18
-- Rust >= 1.70
-- Cargo
-
-### 克隆项目
-```bash
-git clone https://github.com/linminhao/craftcraft-launcher.git
+git clone https://github.com/93857536-pixel/craftcraft-launcher
 cd craftcraft-launcher
-```
 
-### 安装依赖
-```bash
-# 前端依赖
 npm install
-
-# Rust 依赖会自动安装
+npm run tauri build     # 产物在 src-tauri/target/release/bundle/
 ```
 
-### 开发模式
+开发模式：
+
 ```bash
 npm run tauri dev
 ```
 
-### 构建发布版本
-```bash
-npm run tauri build
-```
+---
 
-构建产物位于 `src-tauri/target/release/bundle/`
+## 使用流程
 
-## 📁 项目结构
-
-```
-CraftCraftLauncher/
-├── src/                    # Rust 后端
-│   ├── commands/          # Tauri 命令
-│   ├── models/            # 数据模型
-│   ├── services/          # 业务逻辑
-│   └── utils/             # 工具函数
-├── src-tauri/             # Tauri 配置
-└── src/frontend/          # React 前端
-    ├── components/        # UI 组件
-    ├── hooks/             # 自定义 Hooks
-    └── stores/            # 状态管理
-```
-
-## 🤝 贡献
-
-欢迎提交 Issue 和 Pull Request！
-
-1. Fork 本仓库
-2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
-3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
-4. 推送到分支 (`git push origin feature/AmazingFeature`)
-5. 开启 Pull Request
-
-## 📄 许可证
-
-本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
-
-## 🙏 致谢
-
-- [Minecraft](https://www.minecraft.net/) - Mojang Studios
-- [Prism Launcher](https://prismlauncher.org/) - 开源启动器参考
-- [PCL2](https://hmks.github.io/PCL2/) - 中文启动器参考
-- [Tauri](https://tauri.app/) - 跨平台框架
-- [React](https://reactjs.org/) - 前端框架
-
-## 📊 统计
-
-![GitHub stars](https://img.shields.io/github/stars/linminhao/craftcraft-launcher?style=social)
-![GitHub forks](https://img.shields.io/github/forks/linminhao/craftcraft-launcher?style=social)
-![GitHub issues](https://img.shields.io/github/issues/linminhao/craftcraft-launcher)
-![GitHub license](https://img.shields.io/github/license/linminhao/craftcraft-launcher)
+1. **Java 页** → 点 `Download Temurin 21`（一次性，约 200MB）
+2. **New** → 填名称 / 版本（如 `1.21`）/ 内存 → Create
+3. **Instances** → 点 `▶ Launch`（首次会下载游戏文件，约 300MB）
+4. 自动跳到 **Logs** 页看实时启动日志
 
 ---
 
-Made with ❤️ by [LinMinHao](https://github.com/linminhao)
+## 架构
+
+```
+React (Vite)  ──invoke──▶  Tauri commands (18)
+                              │
+                    ┌─────────┴──────────┐
+              services/              models/
+        mojang.rs   java_manager.rs   instance.rs
+        launcher.rs server_store.rs   java.rs / server.rs / settings.rs
+        instance_store.rs settings_store.rs
+                              │
+                    <data dir>/instances.json
+                              servers.json / settings.json
+                              versions/ libraries/ assets/ javas/
+```
+
+数据目录：
+
+| 平台 | 路径 |
+|---|---|
+| macOS | `~/Library/Application Support/CraftCraft/` |
+| Windows | `%APPDATA%\CraftCraft\` |
+| Linux | `~/.config/CraftCraft/` |
+
+完整实现规格见 [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)。
+
+---
+
+## 开发
+
+```bash
+# 后端编译检查
+cd src-tauri && cargo check
+
+# 端到端冒烟测试（真实下载 Java + 游戏文件 + 启动 JVM 校验 classpath）
+cd src-tauri && cargo run --release --bin smoke -- 1.21
+
+# 前端类型检查 + 构建
+npm run build
+```
+
+---
+
+## 已知限制（v0.1.0）
+
+- 仅支持 **vanilla**（Forge / Fabric / Quilt / NeoForge 在路线图上）
+- **离线模式**（离线 UUID），未接入 Microsoft 正版登录 → 无法进入正版验证服务器
+- 资产下载为串行（首次较慢，后续有缓存）
+- 未做代码签名 / 公证
+
+## License
+
+MIT © LinMinHao
