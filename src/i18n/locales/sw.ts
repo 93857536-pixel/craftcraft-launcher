@@ -102,6 +102,13 @@ const sw = {
   'settings.language': 'Lugha',
   'settings.languageDesc': 'Lugha ya kiolesura — mabadiliko huanza mara moja',
   'settings.saved': 'Mipangilio imehifadhiwa',
+  'wizard.selectVersion': 'Chagua toleo…',
+  'wizard.releases': 'Matoleo rasmi',
+  'wizard.snapshots': 'Matoleo ya snapshot',
+  'wizard.oldBeta': 'Beta ya zamani',
+  'wizard.oldAlpha': 'Alpha ya zamani',
+  'wizard.showSnapshots': 'Jumuisha matoleo ya snapshot ({n})',
+  'instances.versionDesc': 'Badilisha toleo la mchezo (hutumika kwenye uzinduzi unaofuata)',
 };
 
 export default sw;

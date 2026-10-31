@@ -102,6 +102,13 @@ const ur = {
   'settings.language': 'زبان',
   'settings.languageDesc': 'انٹرفیس کی زبان — تبدیلیاں فوراً لاگو ہوتی ہیں',
   'settings.saved': 'ترتیبات محفوظ ہو گئیں',
+  'wizard.selectVersion': 'ایک ورژن منتخب کریں…',
+  'wizard.releases': 'ریلیز',
+  'wizard.snapshots': 'اسنیپ شاٹس',
+  'wizard.oldBeta': 'پرانا بیٹا',
+  'wizard.oldAlpha': 'پرانا الفا',
+  'wizard.showSnapshots': 'اسنیپ شاٹس شامل کریں ({n})',
+  'instances.versionDesc': 'گیم ورژن تبدیل کریں (اگلی بار لانچ پر لاگو ہوگا)',
 };
 
 export default ur;

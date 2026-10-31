@@ -102,6 +102,14 @@ const bg = {
   'settings.language': 'Език',
   'settings.languageDesc': 'Език на интерфейса — промените се прилагат веднага',
   'settings.saved': 'Настройките са запазени',
+
+  'wizard.selectVersion': 'Изберете версия…',
+  'wizard.releases': 'Стабилни версии',
+  'wizard.snapshots': 'Снапшоти',
+  'wizard.oldBeta': 'Стара Beta',
+  'wizard.oldAlpha': 'Стара Alpha',
+  'wizard.showSnapshots': 'Включи снапшоти ({n})',
+  'instances.versionDesc': 'Смяна на версията на играта (прилага се при следващото стартиране)',
 };
 
 export default bg;

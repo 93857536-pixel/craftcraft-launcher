@@ -102,6 +102,13 @@ const ga = {
   'settings.language': 'Teanga',
   'settings.languageDesc': 'Teanga an chomhéadain — cuirtear athruithe i bhfeidhm láithreach',
   'settings.saved': 'Socruithe sábháilte',
+  'wizard.selectVersion': 'Roghnaigh leagan…',
+  'wizard.releases': 'Eisiúintí',
+  'wizard.snapshots': 'Léargais',
+  'wizard.oldBeta': 'Sean-Beta',
+  'wizard.oldAlpha': 'Sean-Alpha',
+  'wizard.showSnapshots': 'Cuir léargais san áireamh ({n})',
+  'instances.versionDesc': 'Athraigh leagan an chluiche (i bhfeidhm ag an gcéad seoladh eile)',
 };
 
 export default ga;

@@ -102,6 +102,13 @@ const ms = {
   'settings.language': 'Bahasa',
   'settings.languageDesc': 'Bahasa antara muka — perubahan digunakan serta-merta',
   'settings.saved': 'Tetapan disimpan',
+  'wizard.selectVersion': 'Pilih versi…',
+  'wizard.releases': 'Keluaran',
+  'wizard.snapshots': 'Syot kilat',
+  'wizard.oldBeta': 'Beta lama',
+  'wizard.oldAlpha': 'Alpha lama',
+  'wizard.showSnapshots': 'Sertakan syot kilat ({n})',
+  'instances.versionDesc': 'Tukar versi permainan (berkuat kuasa pada pelancaran seterusnya)',
 };
 
 export default ms;

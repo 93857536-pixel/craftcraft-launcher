@@ -102,6 +102,13 @@ const id = {
   'settings.language': 'Bahasa',
   'settings.languageDesc': 'Bahasa antarmuka — perubahan langsung berlaku',
   'settings.saved': 'Pengaturan disimpan',
+  'wizard.selectVersion': 'Pilih versi…',
+  'wizard.releases': 'Rilis',
+  'wizard.snapshots': 'Snapshot',
+  'wizard.oldBeta': 'Beta lama',
+  'wizard.oldAlpha': 'Alpha lama',
+  'wizard.showSnapshots': 'Sertakan snapshot ({n})',
+  'instances.versionDesc': 'Ganti versi game (berlaku saat peluncuran berikutnya)',
 };
 
 export default id;

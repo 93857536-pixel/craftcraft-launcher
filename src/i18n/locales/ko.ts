@@ -94,6 +94,13 @@ const ko = {
   'settings.language': '언어',
   'settings.languageDesc': '인터페이스 언어 — 변경 사항은 즉시 적용됩니다',
   'settings.saved': '설정이 저장되었습니다',
+  'wizard.selectVersion': '버전 선택…',
+  'wizard.releases': '정식 버전',
+  'wizard.snapshots': '스냅샷',
+  'wizard.oldBeta': '구 베타',
+  'wizard.oldAlpha': '구 알파',
+  'wizard.showSnapshots': '스냅샷 포함 ({n})',
+  'instances.versionDesc': '게임 버전 변경 (다음 실행 시 적용)',
 };
 
 export default ko;

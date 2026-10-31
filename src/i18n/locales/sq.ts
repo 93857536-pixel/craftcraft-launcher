@@ -102,6 +102,13 @@ const sq = {
   'settings.language': 'Gjuha',
   'settings.languageDesc': 'Gjuha e ndërfaqes — ndryshimet zbatohen menjëherë',
   'settings.saved': 'Cilësimet u ruajtën',
+  'wizard.selectVersion': 'Zgjidh një version…',
+  'wizard.releases': 'Versionet zyrtare',
+  'wizard.snapshots': 'Versionet e ndërmjetme',
+  'wizard.oldBeta': 'Beta e vjetër',
+  'wizard.oldAlpha': 'Alfa e vjetër',
+  'wizard.showSnapshots': 'Përfshi versionet e ndërmjetme ({n})',
+  'instances.versionDesc': 'Ndrysho versionin e lojës (zbatohet në nisjen tjetër)',
 };
 
 export default sq;

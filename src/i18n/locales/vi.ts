@@ -102,6 +102,13 @@ const vi = {
   'settings.language': 'Ngôn ngữ',
   'settings.languageDesc': 'Ngôn ngữ giao diện — thay đổi áp dụng ngay',
   'settings.saved': 'Đã lưu cài đặt',
+  'wizard.selectVersion': 'Chọn phiên bản…',
+  'wizard.releases': 'Bản phát hành',
+  'wizard.snapshots': 'Bản snapshot',
+  'wizard.oldBeta': 'Beta cũ',
+  'wizard.oldAlpha': 'Alpha cũ',
+  'wizard.showSnapshots': 'Bao gồm bản snapshot ({n})',
+  'instances.versionDesc': 'Đổi phiên bản trò chơi (áp dụng ở lần khởi động sau)',
 };
 
 export default vi;

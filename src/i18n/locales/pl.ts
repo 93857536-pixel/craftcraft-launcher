@@ -94,6 +94,13 @@ const pl = {
   'settings.language': 'Język',
   'settings.languageDesc': 'Język interfejsu — zmiany stosowane natychmiast',
   'settings.saved': 'Ustawienia zapisane',
+  'wizard.selectVersion': 'Wybierz wersję…',
+  'wizard.releases': 'Wydania',
+  'wizard.snapshots': 'Migawki',
+  'wizard.oldBeta': 'Stara beta',
+  'wizard.oldAlpha': 'Stara alfa',
+  'wizard.showSnapshots': 'Uwzględnij migawki ({n})',
+  'instances.versionDesc': 'Zmień wersję gry (obowiązuje przy następnym uruchomieniu)',
 };
 
 export default pl;

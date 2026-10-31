@@ -87,6 +87,14 @@ const ca = {
   'settings.language': 'Idioma',
   'settings.languageDesc': 'Idioma de la interfície — els canvis s\'apliquen a l\'instant',
   'settings.saved': 'Configuració desada',
+
+  'wizard.selectVersion': 'Tria una versió…',
+  'wizard.releases': 'Versions estables',
+  'wizard.snapshots': 'Instantànies',
+  'wizard.oldBeta': 'Beta antiga',
+  'wizard.oldAlpha': 'Alpha antiga',
+  'wizard.showSnapshots': 'Inclou instantànies ({n})',
+  'instances.versionDesc': 'Canvia la versió del joc (s\'aplica a la propera execució)',
 };
 
 export default ca;

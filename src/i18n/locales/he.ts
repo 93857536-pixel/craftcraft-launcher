@@ -102,6 +102,13 @@ const he = {
   'settings.language': 'שפה',
   'settings.languageDesc': 'שפת הממשק — השינויים חלים מיד',
   'settings.saved': 'ההגדרות נשמרו',
+  'wizard.selectVersion': 'בחר גרסה…',
+  'wizard.releases': 'גרסאות שחרור',
+  'wizard.snapshots': 'תמונות מצב',
+  'wizard.oldBeta': 'בטא ישנה',
+  'wizard.oldAlpha': 'אלפא ישנה',
+  'wizard.showSnapshots': 'כלול תמונות מצב ({n})',
+  'instances.versionDesc': 'החלף גרסת משחק (יחול בהפעלה הבאה)',
 };
 
 export default he;

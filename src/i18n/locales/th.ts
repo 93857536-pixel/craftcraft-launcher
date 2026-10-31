@@ -102,6 +102,13 @@ const th = {
   'settings.language': 'ภาษา',
   'settings.languageDesc': 'ภาษาของอินเทอร์เฟซ — การเปลี่ยนแปลงมีผลทันที',
   'settings.saved': 'บันทึกการตั้งค่าแล้ว',
+  'wizard.selectVersion': 'เลือกเวอร์ชัน…',
+  'wizard.releases': 'เวอร์ชันทางการ',
+  'wizard.snapshots': 'สแนปช็อต',
+  'wizard.oldBeta': 'เบต้าเก่า',
+  'wizard.oldAlpha': 'อัลฟาเก่า',
+  'wizard.showSnapshots': 'รวมสแนปช็อต ({n})',
+  'instances.versionDesc': 'สลับเวอร์ชันเกม (มีผลเมื่อเริ่มเกมครั้งถัดไป)',
 };
 
 export default th;

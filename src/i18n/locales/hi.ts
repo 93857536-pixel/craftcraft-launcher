@@ -102,6 +102,13 @@ const hi = {
   'settings.language': 'भाषा',
   'settings.languageDesc': 'इंटरफ़ेस भाषा — बदलाव तुरंत लागू होते हैं',
   'settings.saved': 'सेटिंग्स सहेजी गईं',
+  'wizard.selectVersion': 'एक संस्करण चुनें…',
+  'wizard.releases': 'स्थिर संस्करण',
+  'wizard.snapshots': 'स्नैपशॉट',
+  'wizard.oldBeta': 'पुराना बीटा',
+  'wizard.oldAlpha': 'पुराना अल्फा',
+  'wizard.showSnapshots': 'स्नैपशॉट शामिल करें ({n})',
+  'instances.versionDesc': 'गेम संस्करण बदलें (अगली बार लॉन्च करने पर लागू)',
 };
 
 export default hi;

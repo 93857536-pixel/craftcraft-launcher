@@ -87,6 +87,14 @@ const fi = {
   'settings.language': 'Kieli',
   'settings.languageDesc': 'Käyttöliittymän kieli — muutokset astuvat voimaan heti',
   'settings.saved': 'Asetukset tallennettu',
+
+  'wizard.selectVersion': 'Valitse versio…',
+  'wizard.releases': 'Vakaat versiot',
+  'wizard.snapshots': 'Snapshotit',
+  'wizard.oldBeta': 'Vanha Beta',
+  'wizard.oldAlpha': 'Vanha Alpha',
+  'wizard.showSnapshots': 'Sisällytä snapshotit ({n})',
+  'instances.versionDesc': 'Vaihda peliversio (voimassa seuraavalla käynnistyksellä)',
 };
 
 export default fi;

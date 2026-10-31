@@ -94,6 +94,13 @@ const uk = {
   'settings.language': 'Мова',
   'settings.languageDesc': 'Мова інтерфейсу — зміни застосовуються одразу',
   'settings.saved': 'Налаштування збережено',
+  'wizard.selectVersion': 'Виберіть версію…',
+  'wizard.releases': 'Релізи',
+  'wizard.snapshots': 'Знімки',
+  'wizard.oldBeta': 'Стара бета',
+  'wizard.oldAlpha': 'Стара альфа',
+  'wizard.showSnapshots': 'Включно зі знімками ({n})',
+  'instances.versionDesc': 'Змінити версію гри (застосується під час наступного запуску)',
 };
 
 export default uk;

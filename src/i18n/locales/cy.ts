@@ -102,6 +102,14 @@ const cy = {
   'settings.language': 'Iaith',
   'settings.languageDesc': 'Iaith y rhyngwyneb — mae newidiadau\'n gweithredu ar unwaith',
   'settings.saved': 'Gosodiadau wedi\'u cadw',
+
+  'wizard.selectVersion': 'Dewiswch fersiwn…',
+  'wizard.releases': 'Rhyddhadau sefydlog',
+  'wizard.snapshots': 'Cipluniau',
+  'wizard.oldBeta': 'Hen Beta',
+  'wizard.oldAlpha': 'Hen Alpha',
+  'wizard.showSnapshots': 'Cynnwys cipluniau ({n})',
+  'instances.versionDesc': 'Newid fersiwn y gêm (yn weithredol ar y lansiad nesaf)',
 };
 
 export default cy;

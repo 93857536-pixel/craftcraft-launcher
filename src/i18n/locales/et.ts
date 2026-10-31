@@ -102,6 +102,14 @@ const et = {
   'settings.language': 'Keel',
   'settings.languageDesc': 'Kasutajaliidese keel — muudatused rakenduvad kohe',
   'settings.saved': 'Seaded salvestatud',
+
+  'wizard.selectVersion': 'Vali versioon…',
+  'wizard.releases': 'Stabiilsed versioonid',
+  'wizard.snapshots': 'Hetktõmmised',
+  'wizard.oldBeta': 'Vana Beta',
+  'wizard.oldAlpha': 'Vana Alpha',
+  'wizard.showSnapshots': 'Kaasa hetktõmmised ({n})',
+  'instances.versionDesc': 'Muuda mängu versiooni (rakendub järgmisel käivitamisel)',
 };
 
 export default et;

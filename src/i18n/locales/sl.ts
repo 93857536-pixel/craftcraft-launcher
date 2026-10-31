@@ -94,6 +94,13 @@ const sl = {
   'settings.language': 'Jezik',
   'settings.languageDesc': 'Jezik vmesnika — spremembe se uveljavijo takoj',
   'settings.saved': 'Nastavitve shranjene',
+  'wizard.selectVersion': 'Izberite različico…',
+  'wizard.releases': 'Izdaje',
+  'wizard.snapshots': 'Posnetki',
+  'wizard.oldBeta': 'Starejša beta',
+  'wizard.oldAlpha': 'Starejša alfa',
+  'wizard.showSnapshots': 'Vključi posnetke ({n})',
+  'instances.versionDesc': 'Spremeni različico igre (uveljavi se ob naslednjem zagonu)',
 };
 
 export default sl;

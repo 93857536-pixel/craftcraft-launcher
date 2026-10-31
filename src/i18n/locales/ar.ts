@@ -102,6 +102,14 @@ const ar = {
   'settings.language': 'اللغة',
   'settings.languageDesc': 'لغة الواجهة — تُطبَّق التغييرات فورًا',
   'settings.saved': 'تم حفظ الإعدادات',
+
+  'wizard.selectVersion': 'اختر إصدارًا…',
+  'wizard.releases': 'الإصدارات المستقرة',
+  'wizard.snapshots': 'اللقطات',
+  'wizard.oldBeta': 'Beta القديم',
+  'wizard.oldAlpha': 'Alpha القديم',
+  'wizard.showSnapshots': 'تضمين اللقطات ({n})',
+  'instances.versionDesc': 'تغيير إصدار اللعبة (يُطبَّق عند التشغيل التالي)',
 };
 
 export default ar;

@@ -102,6 +102,13 @@ const mk = {
   'settings.language': 'Јазик',
   'settings.languageDesc': 'Јазик на интерфејсот — промените се применуваат веднаш',
   'settings.saved': 'Поставките се зачувани',
+  'wizard.selectVersion': 'Изберете верзија…',
+  'wizard.releases': 'Изданија',
+  'wizard.snapshots': 'Снимки',
+  'wizard.oldBeta': 'Стара бета',
+  'wizard.oldAlpha': 'Стара алфа',
+  'wizard.showSnapshots': 'Вклучи снимки ({n})',
+  'instances.versionDesc': 'Промени верзија на играта (се применува при следното стартување)',
 };
 
 export default mk;

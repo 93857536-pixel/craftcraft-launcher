@@ -94,6 +94,14 @@ const cs = {
   'settings.language': 'Jazyk',
   'settings.languageDesc': 'Jazyk rozhraní — změny se projeví okamžitě',
   'settings.saved': 'Nastavení uloženo',
+
+  'wizard.selectVersion': 'Vyberte verzi…',
+  'wizard.releases': 'Stabilní verze',
+  'wizard.snapshots': 'Snímky',
+  'wizard.oldBeta': 'Starší Beta',
+  'wizard.oldAlpha': 'Starší Alpha',
+  'wizard.showSnapshots': 'Zahrnout snímky ({n})',
+  'instances.versionDesc': 'Změna verze hry (projeví se při příštím spuštění)',
 };
 
 export default cs;

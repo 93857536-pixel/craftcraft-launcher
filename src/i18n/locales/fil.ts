@@ -102,6 +102,14 @@ const fil = {
   'settings.language': 'Wika',
   'settings.languageDesc': 'Wika ng interface — agad na nagkakabisa ang mga pagbabago',
   'settings.saved': 'Na-save ang mga setting',
+
+  'wizard.selectVersion': 'Pumili ng bersyon…',
+  'wizard.releases': 'Mga stable na release',
+  'wizard.snapshots': 'Mga snapshot',
+  'wizard.oldBeta': 'Lumang Beta',
+  'wizard.oldAlpha': 'Lumang Alpha',
+  'wizard.showSnapshots': 'Isama ang mga snapshot ({n})',
+  'instances.versionDesc': 'Palitan ang bersyon ng laro (epektibo sa susunod na paglulunsad)',
 };
 
 export default fil;

@@ -102,6 +102,13 @@ const ro = {
   'settings.language': 'Limbă',
   'settings.languageDesc': 'Limba interfeței — modificările se aplică instant',
   'settings.saved': 'Setările au fost salvate',
+  'wizard.selectVersion': 'Selectați o versiune…',
+  'wizard.releases': 'Versiuni finale',
+  'wizard.snapshots': 'Snapshot-uri',
+  'wizard.oldBeta': 'Beta vechi',
+  'wizard.oldAlpha': 'Alpha vechi',
+  'wizard.showSnapshots': 'Include snapshot-uri ({n})',
+  'instances.versionDesc': 'Schimbă versiunea jocului (se aplică la următoarea pornire)',
 };
 
 export default ro;

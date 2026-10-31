@@ -94,6 +94,13 @@ const it = {
   'settings.language': 'Lingua',
   'settings.languageDesc': 'Lingua dell\'interfaccia — le modifiche hanno effetto immediato',
   'settings.saved': 'Impostazioni salvate',
+  'wizard.selectVersion': 'Seleziona una versione…',
+  'wizard.releases': 'Versioni stabili',
+  'wizard.snapshots': 'Snapshot',
+  'wizard.oldBeta': 'Vecchia beta',
+  'wizard.oldAlpha': 'Vecchia alpha',
+  'wizard.showSnapshots': 'Includi snapshot ({n})',
+  'instances.versionDesc': 'Cambia versione del gioco (si applica al prossimo avvio)',
 };
 
 export default it;

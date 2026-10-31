@@ -94,6 +94,13 @@ const ja = {
   'settings.language': '言語',
   'settings.languageDesc': '表示言語 — 変更はすぐに反映されます',
   'settings.saved': '設定を保存しました',
+  'wizard.selectVersion': 'バージョンを選択…',
+  'wizard.releases': 'リリース版',
+  'wizard.snapshots': 'スナップショット',
+  'wizard.oldBeta': '旧ベータ',
+  'wizard.oldAlpha': '旧アルファ',
+  'wizard.showSnapshots': 'スナップショットを含める（{n}）',
+  'instances.versionDesc': 'ゲームバージョンを切り替え（次回起動時に反映）',
 };
 
 export default ja;

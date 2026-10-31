@@ -102,6 +102,14 @@ const el = {
   'settings.language': 'Γλώσσα',
   'settings.languageDesc': 'Γλώσσα διεπαφής — οι αλλαγές εφαρμόζονται αμέσως',
   'settings.saved': 'Οι ρυθμίσεις αποθηκεύτηκαν',
+
+  'wizard.selectVersion': 'Επιλέξτε έκδοση…',
+  'wizard.releases': 'Σταθερές εκδόσεις',
+  'wizard.snapshots': 'Στιγμιότυπα',
+  'wizard.oldBeta': 'Παλιό Beta',
+  'wizard.oldAlpha': 'Παλιό Alpha',
+  'wizard.showSnapshots': 'Συμπερίληψη στιγμιοτύπων ({n})',
+  'instances.versionDesc': 'Αλλαγή έκδοσης παιχνιδιού (ισχύει στην επόμενη εκκίνηση)',
 };
 
 export default el;

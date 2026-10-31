@@ -94,6 +94,13 @@ const ptBR = {
   'settings.language': 'Idioma',
   'settings.languageDesc': 'Idioma da interface — as alterações são aplicadas na hora',
   'settings.saved': 'Configurações salvas',
+  'wizard.selectVersion': 'Selecione uma versão…',
+  'wizard.releases': 'Lançamentos',
+  'wizard.snapshots': 'Snapshots',
+  'wizard.oldBeta': 'Beta antigo',
+  'wizard.oldAlpha': 'Alpha antigo',
+  'wizard.showSnapshots': 'Incluir snapshots ({n})',
+  'instances.versionDesc': 'Alterar a versão do jogo (aplica-se na próxima inicialização)',
 };
 
 export default ptBR;

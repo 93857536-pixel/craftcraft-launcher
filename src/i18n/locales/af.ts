@@ -102,6 +102,14 @@ const af = {
   'settings.language': 'Taal',
   'settings.languageDesc': 'Koppelvlaktaal — veranderinge geld dadelik',
   'settings.saved': 'Instellings gestoor',
+
+  'wizard.selectVersion': 'Kies ’n weergawe…',
+  'wizard.releases': 'Stabiele weergawes',
+  'wizard.snapshots': 'Momentopnames',
+  'wizard.oldBeta': 'Ou Beta',
+  'wizard.oldAlpha': 'Ou Alpha',
+  'wizard.showSnapshots': 'Sluit momentopnames in ({n})',
+  'instances.versionDesc': 'Verander speletjieweergawe (geld by die volgende bekendstelling)',
 };
 
 export default af;

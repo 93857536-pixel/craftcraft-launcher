@@ -94,6 +94,13 @@ const zhTW = {
   'settings.language': '語言',
   'settings.languageDesc': '介面語言 — 變更後立即生效',
   'settings.saved': '設定已儲存',
+  'wizard.selectVersion': '選擇版本…',
+  'wizard.releases': '正式版',
+  'wizard.snapshots': '快照版',
+  'wizard.oldBeta': '遠古 Beta',
+  'wizard.oldAlpha': '遠古 Alpha',
+  'wizard.showSnapshots': '包含快照版（{n}）',
+  'instances.versionDesc': '切換遊戲版本（下次啟動生效）',
 };
 
 export default zhTW;

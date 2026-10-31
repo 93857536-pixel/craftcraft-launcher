@@ -94,6 +94,13 @@ const hr = {
   'settings.language': 'Jezik',
   'settings.languageDesc': 'Jezik sučelja — promjene se primjenjuju odmah',
   'settings.saved': 'Postavke spremljene',
+  'wizard.selectVersion': 'Odaberi verziju…',
+  'wizard.releases': 'Izdanja',
+  'wizard.snapshots': 'Snimke',
+  'wizard.oldBeta': 'Stara beta',
+  'wizard.oldAlpha': 'Stara alfa',
+  'wizard.showSnapshots': 'Uključi snimke ({n})',
+  'instances.versionDesc': 'Promijeni verziju igre (primjenjuje se pri sljedećem pokretanju)',
 };
 
 export default hr;

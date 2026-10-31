@@ -86,6 +86,13 @@ const is = {
   'settings.language': 'Tungumál',
   'settings.languageDesc': 'Tungumál viðmóts — breytingar taka gildi strax',
   'settings.saved': 'Stillingar vistaðar',
+  'wizard.selectVersion': 'Veldu útgáfu…',
+  'wizard.releases': 'Útgáfur',
+  'wizard.snapshots': 'Skyndimyndir',
+  'wizard.oldBeta': 'Gömul beta',
+  'wizard.oldAlpha': 'Gömul alfa',
+  'wizard.showSnapshots': 'Hafa skyndimyndir með ({n})',
+  'instances.versionDesc': 'Skipta um útgáfu leiksins (tekur gildi við næstu ræsingu)',
 };
 
 export default is;

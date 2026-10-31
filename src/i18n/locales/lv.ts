@@ -102,6 +102,13 @@ const lv = {
   'settings.language': 'Valoda',
   'settings.languageDesc': 'Saskarnes valoda — izmaiņas stājas spēkā nekavējoties',
   'settings.saved': 'Iestatījumi saglabāti',
+  'wizard.selectVersion': 'Izvēlieties versiju…',
+  'wizard.releases': 'Izlaidumi',
+  'wizard.snapshots': 'Momentuzņēmumi',
+  'wizard.oldBeta': 'Vecā beta',
+  'wizard.oldAlpha': 'Vecā alfa',
+  'wizard.showSnapshots': 'Iekļaut momentuzņēmumus ({n})',
+  'instances.versionDesc': 'Mainīt spēles versiju (stājas spēkā nākamajā palaišanā)',
 };
 
 export default lv;

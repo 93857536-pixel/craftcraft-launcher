@@ -87,6 +87,14 @@ const da = {
   'settings.language': 'Sprog',
   'settings.languageDesc': 'Grænsefladesprog — ændringer træder i kraft med det samme',
   'settings.saved': 'Indstillinger gemt',
+
+  'wizard.selectVersion': 'Vælg en version…',
+  'wizard.releases': 'Stabile udgivelser',
+  'wizard.snapshots': 'Snapshots',
+  'wizard.oldBeta': 'Gammel Beta',
+  'wizard.oldAlpha': 'Gammel Alpha',
+  'wizard.showSnapshots': 'Medtag snapshots ({n})',
+  'instances.versionDesc': 'Skift spilversion (gælder ved næste start)',
 };
 
 export default da;

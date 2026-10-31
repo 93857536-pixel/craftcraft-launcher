@@ -86,6 +86,13 @@ const sv = {
   'settings.language': 'Språk',
   'settings.languageDesc': 'Gränssnittsspråk — ändringar gäller direkt',
   'settings.saved': 'Inställningar sparade',
+  'wizard.selectVersion': 'Välj en version…',
+  'wizard.releases': 'Utgåvor',
+  'wizard.snapshots': 'Ögonblicksbilder',
+  'wizard.oldBeta': 'Gammal beta',
+  'wizard.oldAlpha': 'Gammal alfa',
+  'wizard.showSnapshots': 'Inkludera ögonblicksbilder ({n})',
+  'instances.versionDesc': 'Byt spelversion (gäller vid nästa start)',
 };
 
 export default sv;

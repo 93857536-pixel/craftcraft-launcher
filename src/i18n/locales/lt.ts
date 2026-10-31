@@ -102,6 +102,13 @@ const lt = {
   'settings.language': 'Kalba',
   'settings.languageDesc': 'Sąsajos kalba — pakeitimai taikomi iš karto',
   'settings.saved': 'Nustatymai išsaugoti',
+  'wizard.selectVersion': 'Pasirinkite versiją…',
+  'wizard.releases': 'Leidimai',
+  'wizard.snapshots': 'Momentinės kopijos',
+  'wizard.oldBeta': 'Senoji beta',
+  'wizard.oldAlpha': 'Senoji alfa',
+  'wizard.showSnapshots': 'Įtraukti momentines kopijas ({n})',
+  'instances.versionDesc': 'Keisti žaidimo versiją (taikoma kitą kartą paleidus)',
 };
 
 export default lt;

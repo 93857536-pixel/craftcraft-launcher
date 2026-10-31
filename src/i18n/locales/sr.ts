@@ -94,6 +94,13 @@ const sr = {
   'settings.language': 'Језик',
   'settings.languageDesc': 'Језик интерфејса — измене се примењују одмах',
   'settings.saved': 'Подешавања сачувана',
+  'wizard.selectVersion': 'Изаберите верзију…',
+  'wizard.releases': 'Издања',
+  'wizard.snapshots': 'Снимци',
+  'wizard.oldBeta': 'Стара бета',
+  'wizard.oldAlpha': 'Стара алфа',
+  'wizard.showSnapshots': 'Укључи снимке ({n})',
+  'instances.versionDesc': 'Промени верзију игре (примењује се при следећем покретању)',
 };
 
 export default sr;

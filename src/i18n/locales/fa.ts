@@ -102,6 +102,14 @@ const fa = {
   'settings.language': 'زبان',
   'settings.languageDesc': 'زبان رابط — تغییرات فوراً اعمال می‌شوند',
   'settings.saved': 'تنظیمات ذخیره شد',
+
+  'wizard.selectVersion': 'یک نسخه را انتخاب کنید…',
+  'wizard.releases': 'نسخه‌های پایدار',
+  'wizard.snapshots': 'اسنپ‌شات‌ها',
+  'wizard.oldBeta': 'Beta قدیمی',
+  'wizard.oldAlpha': 'Alpha قدیمی',
+  'wizard.showSnapshots': 'شامل اسنپ‌شات‌ها ({n})',
+  'instances.versionDesc': 'تغییر نسخه بازی (در اجرای بعدی اعمال می‌شود)',
 };
 
 export default fa;

@@ -102,6 +102,13 @@ const tr = {
   'settings.language': 'Dil',
   'settings.languageDesc': 'Arayüz dili — değişiklikler anında uygulanır',
   'settings.saved': 'Ayarlar kaydedildi',
+  'wizard.selectVersion': 'Bir sürüm seçin…',
+  'wizard.releases': 'Yayın sürümleri',
+  'wizard.snapshots': 'Anlık görüntüler',
+  'wizard.oldBeta': 'Eski beta',
+  'wizard.oldAlpha': 'Eski alfa',
+  'wizard.showSnapshots': 'Anlık görüntüleri dahil et ({n})',
+  'instances.versionDesc': 'Oyun sürümünü değiştir (sonraki başlatmada geçerli olur)',
 };
 
 export default tr;

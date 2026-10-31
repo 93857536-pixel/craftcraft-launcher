@@ -86,6 +86,13 @@ const nl = {
   'settings.language': 'Taal',
   'settings.languageDesc': 'Interfacetaal — wijzigingen gelden direct',
   'settings.saved': 'Instellingen opgeslagen',
+  'wizard.selectVersion': 'Selecteer een versie…',
+  'wizard.releases': 'Uitgaven',
+  'wizard.snapshots': 'Snapshots',
+  'wizard.oldBeta': 'Oude bèta',
+  'wizard.oldAlpha': 'Oude alfa',
+  'wizard.showSnapshots': 'Snapshots opnemen ({n})',
+  'instances.versionDesc': 'Spelversie wijzigen (geldt bij de volgende start)',
 };
 
 export default nl;

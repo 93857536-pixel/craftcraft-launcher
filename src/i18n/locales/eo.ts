@@ -87,6 +87,14 @@ const eo = {
   'settings.language': 'Lingvo',
   'settings.languageDesc': 'Lingvo de la fasado — ŝanĝoj validas tuj',
   'settings.saved': 'Agordoj konservitaj',
+
+  'wizard.selectVersion': 'Elektu version…',
+  'wizard.releases': 'Stabilaj eldonoj',
+  'wizard.snapshots': 'Snapŝotoj',
+  'wizard.oldBeta': 'Malnova Beta',
+  'wizard.oldAlpha': 'Malnova Alpha',
+  'wizard.showSnapshots': 'Inkluzivi snapŝotojn ({n})',
+  'instances.versionDesc': 'Ŝanĝi ludversion (validas ĉe la sekva lanĉo)',
 };
 
 export default eo;

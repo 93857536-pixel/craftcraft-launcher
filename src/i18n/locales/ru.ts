@@ -94,6 +94,13 @@ const ru = {
   'settings.language': 'Язык',
   'settings.languageDesc': 'Язык интерфейса — изменения применяются сразу',
   'settings.saved': 'Настройки сохранены',
+  'wizard.selectVersion': 'Выберите версию…',
+  'wizard.releases': 'Релизы',
+  'wizard.snapshots': 'Снимки',
+  'wizard.oldBeta': 'Старая бета',
+  'wizard.oldAlpha': 'Старая альфа',
+  'wizard.showSnapshots': 'Включая снимки ({n})',
+  'instances.versionDesc': 'Сменить версию игры (применится при следующем запуске)',
 };
 
 export default ru;

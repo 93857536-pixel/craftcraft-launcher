@@ -94,6 +94,13 @@ const sk = {
   'settings.language': 'Jazyk',
   'settings.languageDesc': 'Jazyk rozhrania — zmeny sa prejavia okamžite',
   'settings.saved': 'Nastavenia uložené',
+  'wizard.selectVersion': 'Vyberte verziu…',
+  'wizard.releases': 'Vydania',
+  'wizard.snapshots': 'Snímky',
+  'wizard.oldBeta': 'Staršia beta',
+  'wizard.oldAlpha': 'Staršia alfa',
+  'wizard.showSnapshots': 'Zahrnúť snímky ({n})',
+  'instances.versionDesc': 'Zmeniť verziu hry (prejaví sa pri ďalšom spustení)',
 };
 
 export default sk;

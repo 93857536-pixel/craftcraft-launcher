@@ -102,6 +102,13 @@ const hu = {
   'settings.language': 'Nyelv',
   'settings.languageDesc': 'A felület nyelve — a változtatások azonnal életbe lépnek',
   'settings.saved': 'Beállítások mentve',
+  'wizard.selectVersion': 'Válassz verziót…',
+  'wizard.releases': 'Kiadások',
+  'wizard.snapshots': 'Pillanatképek',
+  'wizard.oldBeta': 'Régi béta',
+  'wizard.oldAlpha': 'Régi alfa',
+  'wizard.showSnapshots': 'Pillanatképek belefoglalása ({n})',
+  'instances.versionDesc': 'Játékverzió váltása (a következő indításkor lép életbe)',
 };
 
 export default hu;

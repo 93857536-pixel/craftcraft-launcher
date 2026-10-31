@@ -86,6 +86,13 @@ const nb = {
   'settings.language': 'Språk',
   'settings.languageDesc': 'Grensesnittspråk — endringer gjelder umiddelbart',
   'settings.saved': 'Innstillinger lagret',
+  'wizard.selectVersion': 'Velg en versjon…',
+  'wizard.releases': 'Utgivelser',
+  'wizard.snapshots': 'Øyeblikksbilder',
+  'wizard.oldBeta': 'Gammel beta',
+  'wizard.oldAlpha': 'Gammel alfa',
+  'wizard.showSnapshots': 'Ta med øyeblikksbilder ({n})',
+  'instances.versionDesc': 'Bytt spillversjon (gjelder ved neste oppstart)',
 };
 
 export default nb;
