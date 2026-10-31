@@ -1,0 +1,5 @@
+target/
+node_modules/
+dist/
+icons/iconset
+package-lock.json

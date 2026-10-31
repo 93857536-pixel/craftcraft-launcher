@@ -1,0 +1,31 @@
+[package]
+name = "craftcraft"
+version = "0.1.0"
+description = "CraftCraft Launcher - modern cross-platform Minecraft launcher"
+authors = ["LinMinHao"]
+license = "MIT"
+repository = "https://github.com/93857536-pixel/craftcraft-launcher"
+edition = "2021"
+
+[lib]
+name = "craftcraft_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = [] }
+tauri-plugin-dialog = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.12", features = ["stream"] }
+tokio = { version = "1", features = ["macros", "rt"] }
+uuid = { version = "1", features = ["v4"] }
+chrono = "0.4"
+anyhow = "1"
+dirs = "6"
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
