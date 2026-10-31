@@ -162,3 +162,60 @@ impl InstanceUpdates {
         }
     }
 }
+
+#[cfg(test)]
+mod store_tests {
+    use super::*;
+
+    /// 用临时文件构造 store，避免碰用户真实 instances.json
+    fn tmp_store(tag: &str) -> InstanceStore {
+        let dir = std::env::temp_dir().join(format!("cc-test-{}-{}", tag, std::process::id()));
+        let _ = fs::create_dir_all(&dir);
+        InstanceStore {
+            file: dir.join("instances.json"),
+            cache: Mutex::new(None),
+        }
+    }
+
+    #[test]
+    fn update_applies_version_and_language() {
+        let store = tmp_store("ver");
+        let inst = store
+            .create(Instance::new("t", "1.20.1", "/tmp/g".into()))
+            .expect("create");
+
+        let changed = store
+            .update(
+                &inst.id,
+                InstanceUpdates {
+                    version: Some("1.21".into()),
+                    language: Some("ja_jp".into()),
+                    ..Default::default()
+                },
+            )
+            .expect("update");
+
+        assert_eq!(changed.version, "1.21", "版本应被更新");
+        assert_eq!(changed.language.as_deref(), Some("ja_jp"), "语言应被写入");
+
+        // 落盘后重新读取，确认持久化生效
+        let again = store.list().expect("list");
+        assert_eq!(again[0].version, "1.21");
+        assert_eq!(again[0].language.as_deref(), Some("ja_jp"));
+    }
+
+    #[test]
+    fn empty_language_clears_to_none() {
+        let store = tmp_store("lang");
+        let inst = store
+            .create(Instance::new("t", "1.21", "/tmp/g".into()))
+            .expect("create");
+        store
+            .update(&inst.id, InstanceUpdates { language: Some("ja_jp".into()), ..Default::default() })
+            .expect("set");
+        let cleared = store
+            .update(&inst.id, InstanceUpdates { language: Some("   ".into()), ..Default::default() })
+            .expect("clear");
+        assert!(cleared.language.is_none(), "空白字符串应清空为 None");
+    }
+}

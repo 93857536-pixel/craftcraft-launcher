@@ -41,6 +41,7 @@ const en = {
   'instances.addTag': 'Add tag…',
   'instances.newCard': 'New Instance',
   'instances.languageAuto': 'Game language: follow game',
+  'instances.versionDesc': 'Change game version (applies next launch)',
   'instances.language': 'Game language',
   'instances.languageCommon': 'Common languages',
   'instances.languageMore': 'More languages (incl. Klingon, Quenya, toki pona…)',

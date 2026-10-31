@@ -7,9 +7,10 @@ import {
   getAllTags,
   gameLanguages,
   updateInstance,
+  listMinecraftVersions,
 } from '../api';
 import { useT } from '../i18n';
-import type { Instance, GameLanguage } from '../types';
+import type { Instance, GameLanguage, MojangVersionInfo } from '../types';
 
 /** 常用语言置顶，其余（含克林贡语、昆雅精灵语、道本语等小众语言）归入「更多」组。 */
 const COMMON_LANGS = [
@@ -38,6 +39,7 @@ export default function InstancesPage({ onLaunch, onSelect, onNew }: P) {
   const [editTagId, setEditTagId] = useState<string | null>(null);
   const [tagInput, setTagInput] = useState('');
   const [langs, setLangs] = useState<GameLanguage[]>([]);
+  const [versions, setVersions] = useState<MojangVersionInfo[]>([]);
 
   useEffect(() => {
     Promise.all([getInstances(), getAllTags()]).then(([insts, allTags]) => {
@@ -46,7 +48,17 @@ export default function InstancesPage({ onLaunch, onSelect, onNew }: P) {
     });
     // 142 种游戏内语言一次性取回，纯本地常量表，无网络开销
     gameLanguages().then(setLangs).catch(() => setLangs([]));
+    // 版本清单仅供「换版本」下拉使用，失败不影响卡片其它功能
+    listMinecraftVersions()
+      .then((v) => setVersions(v.filter((x) => x.type === 'release')))
+      .catch(() => setVersions([]));
   }, []);
+
+  const setVersion = async (id: string, code: string) => {
+    if (!code) return;
+    const updated = await updateInstance({ id, changes: { version: code } });
+    setItems((x) => x.map((i) => (i.id === id ? updated : i)));
+  };
 
   const setLanguage = async (id: string, code: string) => {
     const updated = await updateInstance({ id, changes: { language: code } });
@@ -187,7 +199,29 @@ export default function InstancesPage({ onLaunch, onSelect, onNew }: P) {
               >+</button>
             </div>
 
-            {/* Game language — 142 种，含克林贡语/昆雅精灵语/道本语等小众语言 */}
+            {/* Game version — 换版本，下拉可选，不再手输 */}
+            {versions.length > 0 && (
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+                <span className="text-xs text-muted" style={{ flexShrink: 0 }}>📦</span>
+                <select
+                  className="text-xs"
+                  style={{ flex: 1 }}
+                  value={i.version}
+                  onClick={(e) => e.stopPropagation()}
+                  onChange={(e) => { e.stopPropagation(); setVersion(i.id, e.target.value); }}
+                  title={t('instances.versionDesc')}
+                >
+                  {!versions.some((v) => v.id === i.version) && (
+                    <option value={i.version}>{i.version}</option>
+                  )}
+                  {versions.map((v) => (
+                    <option key={v.id} value={v.id}>
+                      {v.id}{v.id === versions[0]?.id ? ' ★' : ''}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
             {langs.length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
                 <span className="text-xs text-muted" style={{ flexShrink: 0 }}>🌐</span>

@@ -35,6 +35,7 @@ const zhCN = {
   'instances.addTag': '添加标签…',
   'instances.newCard': '新建实例',
   'instances.languageAuto': '游戏语言：跟随游戏设置',
+  'instances.versionDesc': '切换游戏版本（下次启动生效）',
   'instances.language': '游戏语言',
   'instances.languageCommon': '常用语言',
   'instances.languageMore': '更多语言（含克林贡语、昆雅精灵语、道本语…）',

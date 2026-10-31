@@ -1,6 +1,6 @@
 [package]
 name = "craftcraft"
-version = "0.3.0"
+version = "0.3.1"
 description = "CraftCraft Launcher - modern cross-platform Minecraft launcher"
 authors = ["LinMinHao"]
 license = "MIT"
