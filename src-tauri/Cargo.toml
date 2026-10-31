@@ -33,3 +33,7 @@ md-5 = "0.10"
 
 [features]
 custom-protocol = ["tauri/custom-protocol"]
+
+[[bin]]
+name = "relay-push"
+path = "src/bin/relay_push.rs"

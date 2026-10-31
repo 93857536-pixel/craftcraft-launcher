@@ -1,52 +1,100 @@
-import { useState, useEffect } from 'react';
-import { getInstances, deleteInstance, launchInstance, listMinecraftVersions } from '../api';
-import type { Instance, MojangVersionInfo } from '../types';
+import { useState, useEffect, useRef } from 'react';
+import { getInstances, deleteInstance, launchInstance } from '../api';
+import type { Instance } from '../types';
 
 interface P {
   onLaunch: (id: string) => void;
   onSelect: (id: string | null) => void;
+  onNew: () => void;
 }
-export default function InstancesPage({ onLaunch, onSelect }: P) {
+
+export default function InstancesPage({ onLaunch, onSelect, onNew }: P) {
   const [items, setItems] = useState<Instance[]>([]);
-  const [versions, setVersions] = useState<MojangVersionInfo[]>([]);
   const [loading, setLoading] = useState(false);
-  useEffect(() => { load(); list(); }, []);
-  const load = () => getInstances().then(setItems).catch(console.error);
-  const list = () => listMinecraftVersions().then((v) => setVersions(v.filter((x) => x.type === 'release'))).catch(() => {});
+  const [selId, setSelId] = useState<string | null>(null);
+
+  useEffect(() => { getInstances().then(setItems).catch(console.error); }, []);
+
   const del = async (id: string) => {
     if (!confirm('Delete this instance? Game data will be kept.')) return;
     await deleteInstance(id);
-    load();
+    setItems((x) => x.filter((i) => i.id !== id));
+    if (selId === id) setSelId(null);
   };
+
   const launch = async (id: string) => {
     setLoading(true);
     try {
       const r = await launchInstance(id);
-      if (r.success) load(); else alert('Launch failed: ' + r.message);
+      if (r.success) {
+        setItems((x) => x.map((i) => i.id === id ? { ...i, last_played_at: Date.now() / 1000 } : i));
+        onLaunch(id);
+      } else alert('Launch failed: ' + r.message);
     } finally { setLoading(false); }
   };
-  if (!items.length) return <div className="card" style={{textAlign:'center',padding:'48px',color:'var(--muted)'}}>
-    No instances yet.<br/><button className="primary" style={{marginTop:12}} onClick={()=>onSelect('x')}>Create one</button>
-  </div>;
-  return <div className="grid">
-    {items.map((i) => (
-      <div key={i.id} className="card">
-        <div style={{display:'flex',alignItems:'center',gap:8}}>
-          <span style={{fontSize:28}}>⛏</span>
-          <div style={{flex:1}}>
-            <div style={{fontWeight:600}}>{i.name}</div>
-            <div style={{fontSize:12,color:'var(--muted)'}}>{i.version} {i.loader!=='vanilla'?' ('+i.loader+')':''}</div>
+
+  if (!items.length) {
+    return (
+      <div className="empty">
+        <div className="empty-icon">⛏</div>
+        <h3>No instances yet</h3>
+        <p>Create your first Minecraft instance to get started.</p>
+        <button className="primary" onClick={onNew} style={{ marginTop: 4, padding: '8px 20px', fontSize: 13 }}>
+          + New Instance
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="page-title">
+        Instances
+        <span className="text-muted" style={{ fontWeight: 400, marginLeft: 6, fontSize: 12.5 }}>{items.length} instance{items.length > 1 ? 's' : ''}</span>
+      </div>
+      <div className="grid">
+        {items.map((i) => (
+          <div
+            key={i.id}
+            className={`inst-card${selId === i.id ? ' selected' : ''}`}
+            onClick={() => onSelect(i.id)}
+          >
+            <div className="inst-header">
+              <div className="inst-icon">⛏</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="inst-name">{i.name}</div>
+                <div className="inst-version">{i.version}{i.loader !== 'vanilla' ? ` · ${i.loader}` : ''}</div>
+              </div>
+              <span className="badge green">{i.memory_max_mb}MB</span>
+            </div>
+            <div className="inst-meta">
+              <span className="tag">{i.account_name}</span>
+              {i.last_played_at && (
+                <span className="text-xs text-muted" style={{ alignSelf: 'center' }}>
+                  {new Date(i.last_played_at * 1000).toLocaleString()}
+                </span>
+              )}
+            </div>
+            <div style={{ display: 'flex', gap: 6, marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--border)' }}>
+              <button className="primary" disabled={loading} onClick={(e) => { e.stopPropagation(); launch(i.id); }} style={{ flex: 1, justifyContent: 'center' }}>
+                ▶ Launch
+              </button>
+              <button className="secondary" onClick={(e) => { e.stopPropagation(); onSelect(i.id); }}>Edit</button>
+              <button className="danger" onClick={(e) => { e.stopPropagation(); del(i.id); }}>Del</button>
+            </div>
           </div>
-          <span className="badge green">{i.memory_max_mb}MB</span>
-        </div>
-        <div style={{marginTop:8,fontSize:12,color:'var(--muted)'}}>
-          {i.account_name} · last played: {i.last_played_at ? new Date(i.last_played_at * 1000).toLocaleString() : '—'}
-        </div>
-        <div className="btn-row">
-          <button className="primary" disabled={loading} onClick={() => launch(i.id)}>▶ Launch</button>
-          <button className="danger" onClick={() => del(i.id)}>🗑</button>
+        ))}
+        <div
+          className="inst-card"
+          style={{ borderStyle: 'dashed', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 140, color: 'var(--text-dim)' }}
+          onClick={onNew}
+        >
+          <div style={{ textAlign: 'center' }}>
+            <div style={{ fontSize: 20, marginBottom: 4, opacity: 0.5 }}>+</div>
+            <div style={{ fontSize: 12 }}>New Instance</div>
+          </div>
         </div>
       </div>
-    ))}
-  </div>;
+    </>
+  );
 }
