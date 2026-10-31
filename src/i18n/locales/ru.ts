@@ -34,6 +34,11 @@ const ru = {
   'instances.launchFailed': 'Не удалось запустить: {msg}',
   'instances.addTag': 'Добавить тег…',
   'instances.newCard': 'Новая сборка',
+  'instances.languageAuto': 'Язык игры: по настройкам игры',
+  'instances.language': 'Язык игры',
+  'instances.languageCommon': 'Часто используемые языки',
+  'instances.languageMore': 'Ещё языки (вкл. клингонский, квенья, токи-пона…)',
+  'instances.languageDesc': 'Игровой язык Minecraft — передаётся игре как --language',
 
   'wizard.title': 'Создание сборки',
   'wizard.name': 'Название',

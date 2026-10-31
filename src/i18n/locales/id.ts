@@ -37,6 +37,11 @@ const id = {
   'instances.launchFailed': 'Gagal menjalankan: {msg}',
   'instances.addTag': 'Tambah tag…',
   'instances.newCard': 'Instans Baru',
+  'instances.languageAuto': 'Bahasa permainan: mengikuti pengaturan permainan',
+  'instances.language': 'Bahasa permainan',
+  'instances.languageCommon': 'Bahasa umum',
+  'instances.languageMore': 'Bahasa lain (termasuk Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Bahasa dalam permainan Minecraft — diteruskan ke permainan sebagai --language',
 
   // create-instance wizard
   'wizard.title': 'Buat Instans',

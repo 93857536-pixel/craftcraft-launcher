@@ -37,6 +37,11 @@ const ga = {
   'instances.launchFailed': 'Theip ar an seoladh: {msg}',
   'instances.addTag': 'Cuir clib leis…',
   'instances.newCard': 'Cás Nua',
+  'instances.languageAuto': 'Teanga an chluiche: lean an cluiche',
+  'instances.language': 'Teanga an chluiche',
+  'instances.languageCommon': 'Teangacha coitianta',
+  'instances.languageMore': 'Tuilleadh teangacha (Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Teanga inmheánach Minecraft — curtha chuig an gcluiche mar --language',
 
   // create-instance wizard
   'wizard.title': 'Cruthaigh Cás',

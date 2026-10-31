@@ -37,6 +37,11 @@ const hu = {
   'instances.launchFailed': 'Az indítás sikertelen: {msg}',
   'instances.addTag': 'Címke hozzáadása…',
   'instances.newCard': 'Új példány',
+  'instances.languageAuto': 'Játéknyelv: követi a játék beállításait',
+  'instances.language': 'Játéknyelv',
+  'instances.languageCommon': 'Gyakorlatos nyelvek',
+  'instances.languageMore': 'További nyelvek (Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'A Minecraft játékban használt nyelv — a játéknak --language paraméterként átadva',
 
   // create-instance wizard
   'wizard.title': 'Példány létrehozása',

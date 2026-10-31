@@ -37,6 +37,11 @@ const ro = {
   'instances.launchFailed': 'Pornirea a eșuat: {msg}',
   'instances.addTag': 'Adaugă etichetă…',
   'instances.newCard': 'Instanță nouă',
+  'instances.languageAuto': 'Limba jocului: urmează jocul',
+  'instances.language': 'Limba jocului',
+  'instances.languageCommon': 'Limbi frecvente',
+  'instances.languageMore': 'Mai multe limbi (incl. klingoniană, quenya, toki pona…)',
+  'instances.languageDesc': 'Limba din interiorul Minecraft — transmisă jocului ca --language',
 
   // create-instance wizard
   'wizard.title': 'Creare instanță',

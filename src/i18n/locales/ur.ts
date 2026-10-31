@@ -37,6 +37,11 @@ const ur = {
   'instances.launchFailed': 'چلانا ناکام رہا: {msg}',
   'instances.addTag': 'ٹیگ شامل کریں…',
   'instances.newCard': 'نیا انسٹینس',
+  'instances.languageAuto': 'کھیل کی زبان: کھیل کی ترتیبات کے مطابق',
+  'instances.language': 'کھیل کی زبان',
+  'instances.languageCommon': 'عام زبانیں',
+  'instances.languageMore': 'مزید زبانیں (بشمول کلنگن، کوینیا، توکی پونا…)',
+  'instances.languageDesc': 'Minecraft کی اندرونی کھیل زبان — کھیل کو --language کے طور پر دی جاتی ہے',
 
   // create-instance wizard
   'wizard.title': 'انسٹینس بنائیں',

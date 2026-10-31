@@ -37,6 +37,11 @@ const lt = {
   'instances.launchFailed': 'Paleisti nepavyko: {msg}',
   'instances.addTag': 'Pridėti žymą…',
   'instances.newCard': 'Naujas egzempliorius',
+  'instances.languageAuto': 'Žaidimo kalba: seka žaidimo nustatymus',
+  'instances.language': 'Žaidimo kalba',
+  'instances.languageCommon': 'Populiarios kalbos',
+  'instances.languageMore': 'Daugiau kalbų (įskaitant Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Minecraft kalba žaismui — perduodama žaidimui kaip --language',
 
   // create-instance wizard
   'wizard.title': 'Egzemplioriaus kūrimas',

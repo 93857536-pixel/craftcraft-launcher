@@ -37,6 +37,11 @@ const mk = {
   'instances.launchFailed': 'Стартувањето не успеа: {msg}',
   'instances.addTag': 'Додај ознака…',
   'instances.newCard': 'Нова Инстанца',
+  'instances.languageAuto': 'Јазик на играта: следи ги поставките на играта',
+  'instances.language': 'Јазик на играта',
+  'instances.languageCommon': 'Чести јазоци',
+  'instances.languageMore': 'Повеќе јазоци (вклучувајќи Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Јазик во Minecraft — се пренесува во играта како --language',
 
   // create-instance wizard
   'wizard.title': 'Создај Инстанца',

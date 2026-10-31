@@ -35,6 +35,11 @@ const cs = {
   'instances.addTag': 'Přidat štítek…',
   'instances.newCard': 'Nová instance',
 
+  'instances.languageAuto': 'Jazyk hry: sleduje nastavení hry',
+  'instances.language': 'Jazyk hry',
+  'instances.languageCommon': 'Obvykle používané jazyky',
+  'instances.languageMore': 'Další jazyky (včetně klingonštiny, quenye a toki pony…)',
+  'instances.languageDesc': 'Jazyk hry Minecraft — předává se hře jako parametr --language',
   'wizard.title': 'Vytvořit instanci',
   'wizard.name': 'Název',
   'wizard.namePlaceholder': 'Můj svět přežití',

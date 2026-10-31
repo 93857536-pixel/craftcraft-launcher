@@ -37,6 +37,11 @@ const hi = {
   'instances.launchFailed': 'लॉन्च विफल: {msg}',
   'instances.addTag': 'टैग जोड़ें…',
   'instances.newCard': 'नया इंस्टेंस',
+  'instances.languageAuto': 'खेल की भाषा: खेल की सेटिंग्स के अनुसार',
+  'instances.language': 'खेल की भाषा',
+  'instances.languageCommon': 'सामान्य भाषाएँ',
+  'instances.languageMore': 'अधिक भाषाएँ (Klingon, Quenya, toki pona सहित…)',
+  'instances.languageDesc': 'Minecraft की इन-गेम भाषा — खेल को --language पैरामीटर के रूप में भेजी जाती है',
 
   // create-instance wizard
   'wizard.title': 'इंस्टेंस बनाएँ',

@@ -34,6 +34,11 @@ const pl = {
   'instances.launchFailed': 'Uruchomienie nie powiodło się: {msg}',
   'instances.addTag': 'Dodaj tag…',
   'instances.newCard': 'Nowa instancja',
+  'instances.languageAuto': 'Język gry: zgodnie z ustawieniami gry',
+  'instances.language': 'Język gry',
+  'instances.languageCommon': 'Popularne języki',
+  'instances.languageMore': 'Więcej języków (m.in. Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Język w grze Minecraft — przekazywany do gry jako --language',
 
   'wizard.title': 'Utwórz instancję',
   'wizard.name': 'Nazwa',

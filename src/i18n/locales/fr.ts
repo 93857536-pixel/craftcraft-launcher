@@ -35,6 +35,11 @@ const fr = {
   'instances.addTag': 'Ajouter un tag…',
   'instances.newCard': 'Nouvelle instance',
 
+  'instances.languageAuto': 'Langue du jeu : suit les réglages du jeu',
+  'instances.language': 'Langue du jeu',
+  'instances.languageCommon': 'Langues courantes',
+  'instances.languageMore': 'Plus de langues (dont Klingon, Quenya et toki pona…)',
+  'instances.languageDesc': 'Langue de Minecraft en jeu – transmise au jeu en tant que --language',
   'wizard.title': 'Créer une instance',
   'wizard.name': 'Nom',
   'wizard.namePlaceholder': 'Mon monde survie',

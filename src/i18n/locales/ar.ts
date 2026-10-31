@@ -38,6 +38,11 @@ const ar = {
   'instances.addTag': 'إضافة وسم…',
   'instances.newCard': 'نسخة جديدة',
 
+  'instances.languageAuto': 'لغة اللعبة: تتبع إعدادات اللعبة',
+  'instances.language': 'لغة اللعبة',
+  'instances.languageCommon': 'اللغات الشائعة',
+  'instances.languageMore': 'المزيد من اللغات (تشمل الكلينغونية والكوينيا وتوكي بونا…)',
+  'instances.languageDesc': 'لغة لعبة ماينكرافت داخل اللعبة — تُمرَّر إلى اللعبة عبر معامل --language',
   // create-instance wizard
   'wizard.title': 'إنشاء نسخة',
   'wizard.name': 'الاسم',

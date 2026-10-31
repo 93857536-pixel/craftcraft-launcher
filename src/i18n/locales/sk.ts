@@ -34,6 +34,11 @@ const sk = {
   'instances.launchFailed': 'Spustenie zlyhalo: {msg}',
   'instances.addTag': 'Pridať štítok…',
   'instances.newCard': 'Nová inštancia',
+  'instances.languageAuto': 'Jazyk hry: podľa nastavenia hry',
+  'instances.language': 'Jazyk hry',
+  'instances.languageCommon': 'Časté jazyky',
+  'instances.languageMore': 'Viac jazykov (vrátane klingončiny, quenya a toki pona…)',
+  'instances.languageDesc': 'Jazyk vo hre Minecraft — prenáša sa hre cez --language',
 
   'wizard.title': 'Vytvoriť inštanciu',
   'wizard.name': 'Názov',

@@ -34,6 +34,11 @@ const it = {
   'instances.launchFailed': 'Avvio non riuscito: {msg}',
   'instances.addTag': 'Aggiungi tag…',
   'instances.newCard': 'Nuova istanza',
+  'instances.languageAuto': 'Lingua del gioco: segue le impostazioni del gioco',
+  'instances.language': 'Lingua del gioco',
+  'instances.languageCommon': 'Lingue comuni',
+  'instances.languageMore': 'Altre lingue (incl. Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Lingua in-game di Minecraft — passata al gioco come --language',
 
   'wizard.title': 'Crea istanza',
   'wizard.name': 'Nome',

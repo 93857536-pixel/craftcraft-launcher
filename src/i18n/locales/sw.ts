@@ -37,6 +37,11 @@ const sw = {
   'instances.launchFailed': 'Uzinduzi umeshindikana: {msg}',
   'instances.addTag': 'Ongeza lebo…',
   'instances.newCard': 'Mfano Mpya',
+  'instances.languageAuto': 'Lugha ya mchezo: inafuata mipangilio ya mchezo',
+  'instances.language': 'Lugha ya mchezo',
+  'instances.languageCommon': 'Lugha za kawaida',
+  'instances.languageMore': 'Lugha nyingine (ikiwa Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Lugha ya Minecraft ndani ya mchezo — inapewa mchezo kama --language',
 
   // create-instance wizard
   'wizard.title': 'Unda Mfano',

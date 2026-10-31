@@ -31,6 +31,12 @@ const fi = {
   'instances.launchFailed': 'Käynnistys epäonnistui: {msg}',
   'instances.addTag': 'Lisää tunniste…',
   'instances.newCard': 'Uusi instanssi',
+
+  'instances.languageAuto': 'Pelikieli: seuraa pelin asetuksia',
+  'instances.language': 'Pelikieli',
+  'instances.languageCommon': 'Yleiset kielet',
+  'instances.languageMore': 'Lisää kieliä (mm. Klingon, Quenya ja toki pona…)',
+  'instances.languageDesc': 'Minecraftin pelikieli — välitetään pelille parametrina --language',
   'wizard.title': 'Luo instanssi',
   'wizard.name': 'Nimi',
   'wizard.namePlaceholder': 'Oma survival-maailmani',

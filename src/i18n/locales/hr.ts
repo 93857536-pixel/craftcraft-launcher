@@ -34,6 +34,11 @@ const hr = {
   'instances.launchFailed': 'Pokretanje nije uspjelo: {msg}',
   'instances.addTag': 'Dodaj oznaku…',
   'instances.newCard': 'Nova instanca',
+  'instances.languageAuto': 'Jezik igre: prati postavke igre',
+  'instances.language': 'Jezik igre',
+  'instances.languageCommon': 'Česti jezici',
+  'instances.languageMore': 'Više jezika (uključujući Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Jezik unutar Minecrafta — proslijeđuje se igri kao --language',
 
   'wizard.title': 'Stvori instancu',
   'wizard.name': 'Naziv',

@@ -38,6 +38,11 @@ const el = {
   'instances.addTag': 'Προσθήκη ετικέτας…',
   'instances.newCard': 'Νέο στιγμιότυπο',
 
+  'instances.languageAuto': 'Γλώσσα παιχνιδιού: ακολουθεί τις ρυθμίσεις του παιχνιδιού',
+  'instances.language': 'Γλώσσα παιχνιδιού',
+  'instances.languageCommon': 'Κοινές γλώσσες',
+  'instances.languageMore': 'Περισσότερες γλώσσες (συμπεριλ. κλίνγκον, κυένα και toki pona…)',
+  'instances.languageDesc': 'Γλώσσα εντός του παιχνιδιού Minecraft — περνάται στο παιχνίδι ως --language',
   // create-instance wizard
   'wizard.title': 'Δημιουργία στιγμιότυπου',
   'wizard.name': 'Όνομα',

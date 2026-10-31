@@ -35,6 +35,11 @@ const es = {
   'instances.addTag': 'Añadir etiqueta…',
   'instances.newCard': 'Nueva instancia',
 
+  'instances.languageAuto': 'Idioma del juego: sigue la configuración del juego',
+  'instances.language': 'Idioma del juego',
+  'instances.languageCommon': 'Idiomas comunes',
+  'instances.languageMore': 'Más idiomas (incl. klingon, quenya y toki pona…)',
+  'instances.languageDesc': 'Idioma en el juego de Minecraft — se pasa al juego como --language',
   'wizard.title': 'Crear instancia',
   'wizard.name': 'Nombre',
   'wizard.namePlaceholder': 'Mi mundo de supervivencia',

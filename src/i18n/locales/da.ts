@@ -31,6 +31,12 @@ const da = {
   'instances.launchFailed': 'Start mislykkedes: {msg}',
   'instances.addTag': 'Tilføj tag…',
   'instances.newCard': 'Ny instans',
+
+  'instances.languageAuto': 'Spilsprog: følger spillets indstillinger',
+  'instances.language': 'Spilsprog',
+  'instances.languageCommon': 'Almindelige sprog',
+  'instances.languageMore': 'Flere sprog (inkl. klingon, Quenya og toki pona…)',
+  'instances.languageDesc': 'Minecrafts sprog i spillet — sendes til spillet som --language',
   'wizard.title': 'Opret instans',
   'wizard.name': 'Navn',
   'wizard.namePlaceholder': 'Min survival-verden',

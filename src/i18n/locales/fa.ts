@@ -38,6 +38,11 @@ const fa = {
   'instances.addTag': 'افزودن برچسب…',
   'instances.newCard': 'نمونهٔ جدید',
 
+  'instances.languageAuto': 'زبان بازی: مطابق تنظیمات بازی',
+  'instances.language': 'زبان بازی',
+  'instances.languageCommon': 'زبان‌های رایج',
+  'instances.languageMore': 'زبان‌های بیشتر (شامل کلینگون، کویِنیا و توکی‌پونا...)',
+  'instances.languageDesc': 'زبان داخل بازی ماین‌کرفت — به‌صورت پارامتر --language به بازی منتقل می‌شود',
   // create-instance wizard
   'wizard.title': 'ایجاد نمونه',
   'wizard.name': 'نام',

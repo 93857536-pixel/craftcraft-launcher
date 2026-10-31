@@ -34,6 +34,11 @@ const ko = {
   'instances.launchFailed': '실행 실패: {msg}',
   'instances.addTag': '태그 추가…',
   'instances.newCard': '새 인스턴스',
+  'instances.languageAuto': '게임 언어: 게임 설정을 따름',
+  'instances.language': '게임 언어',
+  'instances.languageCommon': '자주 쓰는 언어',
+  'instances.languageMore': '추가 언어 (클링온어, 퀘뉴아어, 토키포나 포함…)',
+  'instances.languageDesc': 'Minecraft 게임 내 언어 — --language 인자로 게임에 전달됩니다',
 
   'wizard.title': '인스턴스 만들기',
   'wizard.name': '이름',

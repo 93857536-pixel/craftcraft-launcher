@@ -34,6 +34,11 @@ const ptBR = {
   'instances.launchFailed': 'Falha ao iniciar: {msg}',
   'instances.addTag': 'Adicionar tag…',
   'instances.newCard': 'Nova instância',
+  'instances.languageAuto': 'Idioma do jogo: seguir o jogo',
+  'instances.language': 'Idioma do jogo',
+  'instances.languageCommon': 'Idiomas comuns',
+  'instances.languageMore': 'Mais idiomas (incl. Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Idioma interno do Minecraft — passado ao jogo como --language',
 
   'wizard.title': 'Criar instância',
   'wizard.name': 'Nome',

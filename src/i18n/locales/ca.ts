@@ -31,6 +31,12 @@ const ca = {
   'instances.launchFailed': 'No s\'ha pogut iniciar: {msg}',
   'instances.addTag': 'Afegeix una etiqueta…',
   'instances.newCard': 'Nova instància',
+
+  'instances.languageAuto': 'Idioma del joc: segueix la configuració del joc',
+  'instances.language': 'Idioma del joc',
+  'instances.languageCommon': 'Idiomes comuns',
+  'instances.languageMore': 'Més idiomes (incl. klingon, quenya i toki pona…)',
+  'instances.languageDesc': 'Idioma del Minecraft dins del joc — es passa al joc com a --language',
   'wizard.title': 'Crea una instància',
   'wizard.name': 'Nom',
   'wizard.namePlaceholder': 'El meu món de supervivència',

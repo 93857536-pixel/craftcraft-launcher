@@ -38,6 +38,11 @@ const af = {
   'instances.addTag': 'Voeg etiket by…',
   'instances.newCard': 'Nuwe Instansie',
 
+  'instances.languageAuto': 'Speltaal: volg die speletjie se instellings',
+  'instances.language': 'Speltaal',
+  'instances.languageCommon': 'Algemene tale',
+  'instances.languageMore': 'Meer tale (insluitend Klingon, Quenya en toki pona…)',
+  'instances.languageDesc': 'Minecraft-speletjietaal — aan die speletjie deurgegee as --language',
   // create-instance wizard
   'wizard.title': 'Skep Instansie',
   'wizard.name': 'Naam',

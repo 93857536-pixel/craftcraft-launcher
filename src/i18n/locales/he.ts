@@ -37,6 +37,11 @@ const he = {
   'instances.launchFailed': 'ההפעלה נכשלה: {msg}',
   'instances.addTag': 'הוספת תגית…',
   'instances.newCard': 'מופע חדש',
+  'instances.languageAuto': 'שפת המשחק: עוקבת את הגדרות המשחק',
+  'instances.language': 'שפת המשחק',
+  'instances.languageCommon': 'שפות נפוצות',
+  'instances.languageMore': 'שפות נוספות (כולל Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'שפת המשחק של Minecraft — מועברת למשחק באמצעות --language',
 
   // create-instance wizard
   'wizard.title': 'יצירת מופע',

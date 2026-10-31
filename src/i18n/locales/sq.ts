@@ -37,6 +37,11 @@ const sq = {
   'instances.launchFailed': 'Nisja dështoi: {msg}',
   'instances.addTag': 'Shto etiketë…',
   'instances.newCard': 'Instancë e Re',
+  'instances.languageAuto': 'Gjuha e lojës: ndjek konfigurimin e lojës',
+  'instances.language': 'Gjuha e lojës',
+  'instances.languageCommon': 'Gjuhët e zakonshme',
+  'instances.languageMore': 'Më shumë gjuhë (përmb. klingon, quenja, toki pona…)',
+  'instances.languageDesc': 'Gjuha brenda Minecraft — i kalohet lojës si --language',
 
   // create-instance wizard
   'wizard.title': 'Krijo Instancë',

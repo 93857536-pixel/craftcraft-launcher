@@ -31,6 +31,12 @@ const eo = {
   'instances.launchFailed': 'Lanĉo malsukcesis: {msg}',
   'instances.addTag': 'Aldoni etikedon…',
   'instances.newCard': 'Nova instanco',
+
+  'instances.languageAuto': 'Lingvo de la ludo: sekvas la agordojn de la ludo',
+  'instances.language': 'Lingvo de la ludo',
+  'instances.languageCommon': 'Komunaj lingvoj',
+  'instances.languageMore': 'Pliaj lingvoj (inkl. klingonon, Quenyan kaj toki ponon…)',
+  'instances.languageDesc': 'Ludlingvo de Minecraft — alportita al la ludo kiel --language',
   'wizard.title': 'Krei instancon',
   'wizard.name': 'Nomo',
   'wizard.namePlaceholder': 'Mia pluviva mondo',

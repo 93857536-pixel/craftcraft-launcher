@@ -37,6 +37,11 @@ const vi = {
   'instances.launchFailed': 'Khởi chạy thất bại: {msg}',
   'instances.addTag': 'Thêm thẻ…',
   'instances.newCard': 'Bản cài mới',
+  'instances.languageAuto': 'Ngôn ngữ trò chơi: theo cài đặt trò chơi',
+  'instances.language': 'Ngôn ngữ trò chơi',
+  'instances.languageCommon': 'Ngôn ngữ phổ biến',
+  'instances.languageMore': 'Thêm ngôn ngữ (gồm Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Ngôn ngữ trong Minecraft — truyền cho trò chơi dưới dạng --language',
 
   // create-instance wizard
   'wizard.title': 'Tạo bản cài',

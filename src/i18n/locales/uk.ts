@@ -34,6 +34,11 @@ const uk = {
   'instances.launchFailed': 'Не вдалося запустити: {msg}',
   'instances.addTag': 'Додати тег…',
   'instances.newCard': 'Нова збірка',
+  'instances.languageAuto': 'Мова гри: за налаштуваннями гри',
+  'instances.language': 'Мова гри',
+  'instances.languageCommon': 'Розповсюджені мови',
+  'instances.languageMore': 'Інші мови (укл. клінгонська, кенська, токі-пона…)',
+  'instances.languageDesc': 'Мова в грі Minecraft — передається грі як --language',
 
   'wizard.title': 'Створення збірки',
   'wizard.name': 'Назва',

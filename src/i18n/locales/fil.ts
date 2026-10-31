@@ -38,6 +38,11 @@ const fil = {
   'instances.addTag': 'Magdagdag ng tag…',
   'instances.newCard': 'Bagong Instance',
 
+  'instances.languageAuto': 'Wika ng laro: sumusunod sa mga setting ng laro',
+  'instances.language': 'Wika ng laro',
+  'instances.languageCommon': 'Mga karaniwang wika',
+  'instances.languageMore': 'Higit pang wika (kasama ang Klingon, Quenya at toki pona…)',
+  'instances.languageDesc': 'Wika sa loob ng Minecraft — ipinapasa sa laro bilang --language',
   // create-instance wizard
   'wizard.title': 'Gumawa ng Instance',
   'wizard.name': 'Pangalan',

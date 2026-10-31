@@ -34,6 +34,11 @@ const sl = {
   'instances.launchFailed': 'Zagona ni bilo mogoče izvesti: {msg}',
   'instances.addTag': 'Dodaj oznako…',
   'instances.newCard': 'Nova instanca',
+  'instances.languageAuto': 'Jezek igre: sledi nastavitev igre',
+  'instances.language': 'Jezek igre',
+  'instances.languageCommon': 'Pogosti jeziki',
+  'instances.languageMore': 'Več jezikov (vkl. klingonščina, quenja, toki pona…)',
+  'instances.languageDesc': 'Jezek znotraj Minecrafta — prenese se igri kot --language',
 
   'wizard.title': 'Ustvari instanco',
   'wizard.name': 'Ime',

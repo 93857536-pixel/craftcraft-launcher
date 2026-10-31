@@ -35,6 +35,11 @@ const de = {
   'instances.addTag': 'Tag hinzufügen…',
   'instances.newCard': 'Neue Instanz',
 
+  'instances.languageAuto': 'Spielsprache: folgt den Spieleinstellungen',
+  'instances.language': 'Spielsprache',
+  'instances.languageCommon': 'Gebräuchliche Sprachen',
+  'instances.languageMore': 'Weitere Sprachen (u. a. Klingonisch, Quenya und toki pona…)',
+  'instances.languageDesc': 'Minecraft-Spielsprache – wird dem Spiel als --language übergeben',
   'wizard.title': 'Instanz erstellen',
   'wizard.name': 'Name',
   'wizard.namePlaceholder': 'Meine Survival-Welt',

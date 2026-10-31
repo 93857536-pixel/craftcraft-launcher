@@ -37,6 +37,11 @@ const th = {
   'instances.launchFailed': 'เปิดไม่สำเร็จ: {msg}',
   'instances.addTag': 'เพิ่มแท็ก…',
   'instances.newCard': 'อินสแตนซ์ใหม่',
+  'instances.languageAuto': 'ภาษาเกม: ตามการตั้งค่าของเกม',
+  'instances.language': 'ภาษาเกม',
+  'instances.languageCommon': 'ภาษาที่ใช้บ่อย',
+  'instances.languageMore': 'ภาษาเพิ่มเติม (รวม Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'ภาษาในเกม Minecraft — ส่งต่อให้เกมผ่าน --language',
 
   // create-instance wizard
   'wizard.title': 'สร้างอินสแตนซ์',

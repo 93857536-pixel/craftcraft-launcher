@@ -34,6 +34,11 @@ const sr = {
   'instances.launchFailed': 'Покретање није успело: {msg}',
   'instances.addTag': 'Додај ознаку…',
   'instances.newCard': 'Нова инстанца',
+  'instances.languageAuto': 'Језик игре: прати поставке игре',
+  'instances.language': 'Језик игре',
+  'instances.languageCommon': 'Чести језици',
+  'instances.languageMore': 'Још језика (укл. клингонски, квенјски, токи-пона…)',
+  'instances.languageDesc': 'Језик унутар Minecraft — преноси се игри као --language',
 
   'wizard.title': 'Направи инстанцу',
   'wizard.name': 'Назив',

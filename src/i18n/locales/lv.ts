@@ -37,6 +37,11 @@ const lv = {
   'instances.launchFailed': 'Palaišana neizdevās: {msg}',
   'instances.addTag': 'Pievienot atzīmi…',
   'instances.newCard': 'Jauna instance',
+  'instances.languageAuto': 'Spēles valoda: seko spēles iestatījumiem',
+  'instances.language': 'Spēles valoda',
+  'instances.languageCommon': 'Biežāk lietotās valodas',
+  'instances.languageMore': 'Vairāk valodu (t.sk. Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Minecraft valoda spēlē — nodota spēlei kā --language',
 
   // create-instance wizard
   'wizard.title': 'Instances izveide',

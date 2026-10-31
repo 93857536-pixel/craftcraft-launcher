@@ -38,6 +38,11 @@ const bg = {
   'instances.addTag': 'Добави етикет…',
   'instances.newCard': 'Нова инстанция',
 
+  'instances.languageAuto': 'Език на играта: следва настройките на играта',
+  'instances.language': 'Език на играта',
+  'instances.languageCommon': 'Често използвани езици',
+  'instances.languageMore': 'Повече езици (вкл. клингонски, квеня и toki pona…)',
+  'instances.languageDesc': 'Език в играта Minecraft — подава се на играта като параметър --language',
   // create-instance wizard
   'wizard.title': 'Създаване на инстанция',
   'wizard.name': 'Име',

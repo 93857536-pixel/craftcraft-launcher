@@ -34,6 +34,11 @@ const ja = {
   'instances.launchFailed': '起動に失敗しました: {msg}',
   'instances.addTag': 'タグを追加…',
   'instances.newCard': '新規インスタンス',
+  'instances.languageAuto': 'ゲーム言語：ゲーム設定に従う',
+  'instances.language': 'ゲーム言語',
+  'instances.languageCommon': 'よく使う言語',
+  'instances.languageMore': 'その他の言語（クリンゴン語・クウェンヤ語・トーキポナを含む…）',
+  'instances.languageDesc': 'Minecraft のゲーム内言語 — --language 引数としてゲームに渡します',
 
   'wizard.title': 'インスタンスを作成',
   'wizard.name': '名前',

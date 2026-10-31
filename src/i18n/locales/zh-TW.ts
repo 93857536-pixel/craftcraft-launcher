@@ -34,6 +34,11 @@ const zhTW = {
   'instances.launchFailed': '啟動失敗：{msg}',
   'instances.addTag': '新增標籤…',
   'instances.newCard': '新增實例',
+  'instances.languageAuto': '遊戲語言：跟隨遊戲設置',
+  'instances.language': '遊戲語言',
+  'instances.languageCommon': '常用語言',
+  'instances.languageMore': '更多語言（含克林貢語、昆雅精靈語、道本語…）',
+  'instances.languageDesc': 'Minecraft 遊戲內語言 —— 以 --language 參數傳給遊戲',
 
   'wizard.title': '建立實例',
   'wizard.name': '名稱',

@@ -38,6 +38,11 @@ const cy = {
   'instances.addTag': 'Ychwanegu tag…',
   'instances.newCard': 'Achos Newydd',
 
+  'instances.languageAuto': 'Iaith y gêm: dilyn gosodiadau\'r gêm',
+  'instances.language': 'Iaith y gêm',
+  'instances.languageCommon': 'Ieithoedd cyffredin',
+  'instances.languageMore': 'Mwy o ieithoedd (yn cynnwys Klingon, Quenya a toki pona…)',
+  'instances.languageDesc': 'Iaith y gêm Minecraft — a drosglwyddir i\'r gêm fel --language',
   // create-instance wizard
   'wizard.title': 'Creu Achos',
   'wizard.name': 'Enw',

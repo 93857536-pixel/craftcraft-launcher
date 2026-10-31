@@ -37,6 +37,11 @@ const tr = {
   'instances.launchFailed': 'Başlatma başarısız: {msg}',
   'instances.addTag': 'Etiket ekle…',
   'instances.newCard': 'Yeni Örnek',
+  'instances.languageAuto': 'Oyun dili: oyun ayarlarına uyar',
+  'instances.language': 'Oyun dili',
+  'instances.languageCommon': 'Sık kullanılan diller',
+  'instances.languageMore': 'Diğer diller (Klingon, Quenya, toki pona dahil…)',
+  'instances.languageDesc': 'Minecraft oyun içi dili — oyuna --language olarak geçirilir',
 
   // create-instance wizard
   'wizard.title': 'Örnek Oluştur',

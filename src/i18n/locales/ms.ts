@@ -37,6 +37,11 @@ const ms = {
   'instances.launchFailed': 'Pelancaran gagal: {msg}',
   'instances.addTag': 'Tambah tag…',
   'instances.newCard': 'Instans Baharu',
+  'instances.languageAuto': 'Bahasa permainan: ikut tetapan permainan',
+  'instances.language': 'Bahasa permainan',
+  'instances.languageCommon': 'Bahasa biasa',
+  'instances.languageMore': 'Lagi bahasa (termasuk Klingon, Quenya, toki pona…)',
+  'instances.languageDesc': 'Bahasa dalam permainan Minecraft — dihantar ke permainan sebagai --language',
 
   // create-instance wizard
   'wizard.title': 'Cipta Instans',

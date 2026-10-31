@@ -38,6 +38,11 @@ const et = {
   'instances.addTag': 'Lisa silt…',
   'instances.newCard': 'Uus eksemplar',
 
+  'instances.languageAuto': 'Mängukeel: järgib mängu seadeid',
+  'instances.language': 'Mängukeel',
+  'instances.languageCommon': 'Tüüpilised keeled',
+  'instances.languageMore': 'Rohkem keeli (sh. klingoni, quenya ja toki pona…)',
+  'instances.languageDesc': 'Minecrafti mängusisene keel — edastatakse mängule parameetrina --language',
   // create-instance wizard
   'wizard.title': 'Eksemplari loomine',
   'wizard.name': 'Nimi',
