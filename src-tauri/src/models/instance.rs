@@ -44,6 +44,10 @@ pub struct Instance {
     pub memory_max_mb: u64,
     pub jvm_extra_args: Vec<String>,
     pub account_name: String,
+    /// 游戏内语言（Mojang locale，如 `zh_cn` / `tlh_aa`）。
+    /// `None` 表示交给游戏自己决定（跟随上次游戏内设置）。
+    #[serde(default)]
+    pub language: Option<String>,
     pub last_played_at: Option<u64>,
     pub play_count: u64,
     pub created_at: u64,
@@ -69,6 +73,7 @@ impl Instance {
             memory_max_mb: 6144,
             jvm_extra_args: vec![],
             account_name: "Player".into(),
+            language: None,
             last_played_at: None,
             play_count: 0,
             created_at: now,

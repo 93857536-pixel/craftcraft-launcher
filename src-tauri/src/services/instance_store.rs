@@ -80,8 +80,20 @@ impl InstanceStore {
         if let Some(args) = changes.jvm_extra_args {
             it.jvm_extra_args = args;
         }
+        // 空字符串 = 清空为「跟随游戏自身设置」
+        if let Some(lang) = changes.language {
+            let trimmed = lang.trim();
+            it.language = if trimmed.is_empty() {
+                None
+            } else {
+                Some(trimmed.replace('-', "_").to_ascii_lowercase())
+            };
+        }
         if changes.last_played_touch {
             it.touch_play();
+        }
+        if let Some(tags) = changes.tags {
+            it.tags = tags;
         }
         self.persist(&instances)?;
         Ok(instances[idx].clone())
@@ -105,6 +117,17 @@ impl InstanceStore {
             .ok_or_else(|| anyhow::anyhow!("instance not found"))
     }
 
+    pub fn set_tags(&self, id: &str, tags: &[String]) -> Result<()> {
+        let mut instances = self.list()?;
+        let idx = instances
+            .iter()
+            .position(|i| i.id == id)
+            .ok_or_else(|| anyhow::anyhow!("instance not found"))?;
+        instances[idx].tags = tags.to_vec();
+        self.persist(&instances)?;
+        Ok(())
+    }
+
     pub fn list_with_meta(&self) -> InstanceList {
         let instances = self.list().unwrap_or_default();
         let total = instances.len() as u32;
@@ -123,6 +146,10 @@ pub struct InstanceUpdates {
     pub memory_max_mb: Option<u64>,
     pub account_name: Option<String>,
     pub jvm_extra_args: Option<Vec<String>>,
+    /// 游戏内语言。空字符串表示「跟随游戏自身设置」（清空为 None）。
+    #[serde(default)]
+    pub language: Option<String>,
+    pub tags: Option<Vec<String>>,
     #[serde(skip)]
     pub last_played_touch: bool,
 }

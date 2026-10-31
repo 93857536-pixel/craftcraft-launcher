@@ -1,0 +1,102 @@
+/** Македонски */
+const mk = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'Инстанци',
+  'nav.newInstance': 'Нова Инстанца',
+  'nav.java': 'Java',
+  'nav.logs': 'Дневници',
+  'nav.servers': 'Сервери',
+  'nav.settings': 'Поставки',
+
+  // generic actions
+  'common.cancel': 'Откажи',
+  'common.create': 'Создај',
+  'common.save': 'Зачувај',
+  'common.delete': 'Избриши',
+  'common.del': 'Избр',
+  'common.edit': 'Уреди',
+  'common.launch': 'Стартувај',
+  'common.all': 'Сите',
+  'common.filter': 'Филтрирај',
+  'common.add': 'Додај',
+  'common.test': 'Тестирај',
+  'common.refresh': 'Освежи',
+  'common.downloading': 'Се презема…',
+  'common.optional': 'опционално',
+
+  // instances
+  'instances.title': 'Инстанци',
+  'instances.count_one': '{n} инстанца',
+  'instances.count_other': '{n} инстанци',
+  'instances.filteredBy': 'филтрирано: {tag}',
+  'instances.empty.title': 'Сè уште нема инстанци',
+  'instances.empty.desc': 'Создајте ја вашата прва Minecraft инстанца за да започнете.',
+  'instances.deleteConfirm': 'Да се избрише оваа инстанца? Податоците од играта ќе бидат зачувани.',
+  'instances.launchFailed': 'Стартувањето не успеа: {msg}',
+  'instances.addTag': 'Додај ознака…',
+  'instances.newCard': 'Нова Инстанца',
+
+  // create-instance wizard
+  'wizard.title': 'Создај Инстанца',
+  'wizard.name': 'Име',
+  'wizard.namePlaceholder': 'Мојот свет за преживување',
+  'wizard.version': 'Верзија',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'Не е во манифестот — се користи како што е',
+  'wizard.loader': 'Вчитувач',
+  'wizard.accountName': 'Име на сметката',
+  'wizard.maxMemory': 'Максимална меморија (MB)',
+  'wizard.javaRuntime': 'Java околина',
+  'wizard.jdkAvailable': '{n} достапни JDK',
+  'wizard.noJdk': 'Не е пронајден JDK — преземете еден подолу',
+  'wizard.createFailed': 'Создавањето не успеа: {msg}',
+  'wizard.create': 'Создај Инстанца',
+
+  // java runtime page
+  'java.title': 'Java околина',
+  'java.downloadTemurin': 'Преземи Temurin',
+  'java.installed': 'Инсталирани JDK',
+  'java.col.version': 'Верзија',
+  'java.col.path': 'Патека',
+  'java.col.vendor': 'Добавувач',
+  'java.col.arch': 'Архитектура',
+  'java.col.type': 'Тип',
+  'java.managed': 'Управувано',
+  'java.system': 'Систем',
+  'java.empty': 'Не се пронајдени JDK. Преземете еден погоре.',
+  'java.legacyNote': 'Minecraft 1.12 и постари бараат Java 8. На Apple Silicon инсталирајте x86_64 издание на Java 8 (работи преку Rosetta 2).',
+
+  // logs page
+  'logs.title': 'Дневници',
+  'logs.noSelection': 'Нема избрана инстанца',
+  'logs.noSelectionDesc': 'Стартувајте инстанца за да ги видите нејзините дневници овде.',
+  'logs.createInstance': '+ Создај Инстанца',
+  'logs.selectInstance': 'Избери {name}',
+  'logs.autoRefresh': 'Автоматско освежување',
+  'logs.empty': 'Сè уште нема дневник. Стартувајте ја играта за да се создаде.',
+
+  // servers page
+  'servers.title': 'Сервери',
+  'servers.addServer': 'Додај сервер',
+  'servers.address': 'адреса:порта',
+  'servers.name': 'име (опционално)',
+  'servers.online': 'Онлајн',
+  'servers.offline': 'Офлајн',
+  'servers.players': '{online}/{max} играчи',
+  'servers.clickTest': 'Кликнете Тестирај за проверка',
+  'servers.empty': 'Нема сервери. Додајте еден погоре.',
+
+  // settings page
+  'settings.title': 'Поставки',
+  'settings.defaultMaxMemory': 'Стандардна максимална меморија (MB)',
+  'settings.defaultMinMemory': 'Стандардна минимална меморија (MB)',
+  'settings.autoSwitchLogs': 'Автоматски премини на табот Дневници по стартување',
+  'settings.save': 'Зачувај поставки',
+  'settings.language': 'Јазик',
+  'settings.languageDesc': 'Јазик на интерфејсот — промените се применуваат веднаш',
+  'settings.saved': 'Поставките се зачувани',
+};
+
+export default mk;

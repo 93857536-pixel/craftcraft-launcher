@@ -26,6 +26,7 @@ pub fn create_instance(
     version: String,
     loader: Option<LoaderType>,
     account_name: Option<String>,
+    language: Option<String>,
 ) -> Result<Instance, String> {
     let mut instance = Instance::new(name, version, String::new());
     if let Some(loader) = loader {
@@ -33,6 +34,14 @@ pub fn create_instance(
     }
     if let Some(acc) = account_name {
         instance.account_name = acc;
+    }
+    if let Some(lang) = language {
+        let trimmed = lang.trim();
+        instance.language = if trimmed.is_empty() {
+            None
+        } else {
+            Some(trimmed.replace('-', "_").to_ascii_lowercase())
+        };
     }
     store.create(instance).map_err(|e| e.to_string())
 }
@@ -44,6 +53,15 @@ pub fn update_instance(
     changes: InstanceUpdates,
 ) -> Result<Instance, String> {
     store.update(&id, changes).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn set_instance_tags(
+    store: State<'_, InstanceStore>,
+    id: String,
+    tags: Vec<String>,
+) -> Result<(), String> {
+    store.set_tags(&id, &tags).map_err(|e| e.to_string())
 }
 
 #[tauri::command]
@@ -77,6 +95,17 @@ pub async fn launch_instance(
 #[tauri::command]
 pub fn read_log_tail(instance_id: String, lines: u32) -> Result<Vec<String>, String> {
     crate::services::launcher::read_log_tail(&instance_id, lines).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn build_launch_args(
+    store: State<'_, InstanceStore>,
+    id: String,
+) -> Result<String, String> {
+    let instance = store.get(&id).map_err(|e| e.to_string())?;
+    let args = crate::services::launcher::build_launch_args_debug(&instance)
+        .map_err(|e| e.to_string())?;
+    Ok(args)
 }
 
 // ---------- mojang versions ----------
@@ -164,4 +193,54 @@ pub fn get_settings(store: State<'_, SettingsStore>) -> Result<AppSettings, Stri
 #[tauri::command]
 pub fn save_settings(store: State<'_, SettingsStore>, settings: AppSettings) -> Result<(), String> {
     store.save(&settings).map_err(|e| e.to_string())
+}
+
+// ---------- export / import ----------
+
+#[tauri::command]
+pub fn export_instance(store: State<'_, InstanceStore>, id: String) -> Result<Instance, String> {
+    store.get(&id).map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+pub fn import_instances(
+    store: State<'_, InstanceStore>,
+    instances: Vec<Instance>,
+) -> Result<usize, String> {
+    let existing = store.list().map_err(|e| e.to_string())?;
+    let existing_ids: std::collections::HashSet<String> =
+        existing.iter().map(|i| i.id.clone()).collect();
+    let mut imported = 0usize;
+    for inst in instances {
+        if !existing_ids.contains(&inst.id) {
+            store.create(inst).map_err(|e| e.to_string())?;
+            imported += 1;
+        }
+    }
+    Ok(imported)
+}
+
+#[tauri::command]
+pub fn get_all_tags(store: State<'_, InstanceStore>) -> Result<Vec<String>, String> {
+    let instances = store.list().map_err(|e| e.to_string())?;
+    let mut tags: Vec<String> = instances
+        .iter()
+        .flat_map(|i| i.tags.iter().cloned())
+        .collect::<std::collections::BTreeSet<_>>()
+        .into_iter()
+        .collect();
+    tags.sort();
+    Ok(tags)
+}
+
+/// 返回全部 142 种 Minecraft 语言（含克林贡语、昆雅精灵语、道本语等小众语言）。
+#[tauri::command]
+pub fn game_languages() -> Vec<crate::models::language::GameLanguage> {
+    crate::models::language::GAME_LANGUAGES.to_vec()
+}
+
+/// 把系统 locale（如 `zh-CN`）映射到最接近的 Minecraft 语言，供新建实例时预选。
+#[tauri::command]
+pub fn match_game_language(system_locale: String) -> Option<crate::models::language::GameLanguage> {
+    crate::models::language::match_system_locale(&system_locale).cloned()
 }

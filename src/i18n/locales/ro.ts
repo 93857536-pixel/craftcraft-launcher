@@ -1,0 +1,102 @@
+/** Română */
+const ro = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'Instanțe',
+  'nav.newInstance': 'Instanță nouă',
+  'nav.java': 'Java',
+  'nav.logs': 'Jurnale',
+  'nav.servers': 'Servere',
+  'nav.settings': 'Setări',
+
+  // generic actions
+  'common.cancel': 'Anulează',
+  'common.create': 'Creează',
+  'common.save': 'Salvează',
+  'common.delete': 'Șterge',
+  'common.del': 'Șterge',
+  'common.edit': 'Editează',
+  'common.launch': 'Pornește',
+  'common.all': 'Toate',
+  'common.filter': 'Filtru',
+  'common.add': 'Adaugă',
+  'common.test': 'Testează',
+  'common.refresh': 'Reîmprospătează',
+  'common.downloading': 'Se descarcă…',
+  'common.optional': 'opțional',
+
+  // instances
+  'instances.title': 'Instanțe',
+  'instances.count_one': '{n} instanță',
+  'instances.count_other': '{n} instanțe',
+  'instances.filteredBy': 'filtrat: {tag}',
+  'instances.empty.title': 'Încă nu există instanțe',
+  'instances.empty.desc': 'Creează prima instanță Minecraft pentru a începe.',
+  'instances.deleteConfirm': 'Ștergi această instanță? Datele jocului vor fi păstrate.',
+  'instances.launchFailed': 'Pornirea a eșuat: {msg}',
+  'instances.addTag': 'Adaugă etichetă…',
+  'instances.newCard': 'Instanță nouă',
+
+  // create-instance wizard
+  'wizard.title': 'Creare instanță',
+  'wizard.name': 'Nume',
+  'wizard.namePlaceholder': 'Lumea mea de supraviețuire',
+  'wizard.version': 'Versiune',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'Nu este în manifest — folosit ca atare',
+  'wizard.loader': 'Încărcător',
+  'wizard.accountName': 'Nume cont',
+  'wizard.maxMemory': 'Memorie maximă (MB)',
+  'wizard.javaRuntime': 'Runtime Java',
+  'wizard.jdkAvailable': '{n} JDK disponibile',
+  'wizard.noJdk': 'Nu s-a găsit niciun JDK — descarcă unul mai jos',
+  'wizard.createFailed': 'Crearea a eșuat: {msg}',
+  'wizard.create': 'Creează instanța',
+
+  // java runtime page
+  'java.title': 'Runtime Java',
+  'java.downloadTemurin': 'Descarcă Temurin',
+  'java.installed': 'JDK instalate',
+  'java.col.version': 'Versiune',
+  'java.col.path': 'Cale',
+  'java.col.vendor': 'Furnizor',
+  'java.col.arch': 'Arhitectură',
+  'java.col.type': 'Tip',
+  'java.managed': 'Administrat',
+  'java.system': 'Sistem',
+  'java.empty': 'Nu s-a găsit niciun JDK. Descarcă unul mai sus.',
+  'java.legacyNote': 'Minecraft 1.12 și versiunile mai vechi necesită Java 8. Pe Apple Silicon instalează o versiune x86_64 de Java 8 (rulează prin Rosetta 2).',
+
+  // logs page
+  'logs.title': 'Jurnale',
+  'logs.noSelection': 'Nicio instanță selectată',
+  'logs.noSelectionDesc': 'Pornește o instanță pentru a-i vedea jurnalul aici.',
+  'logs.createInstance': '+ Creează instanță',
+  'logs.selectInstance': 'Selectează {name}',
+  'logs.autoRefresh': 'Reîmprospătare automată',
+  'logs.empty': 'Niciun jurnal încă. Pornește jocul pentru a genera unul.',
+
+  // servers page
+  'servers.title': 'Servere',
+  'servers.addServer': 'Adaugă server',
+  'servers.address': 'adresă:port',
+  'servers.name': 'nume (opțional)',
+  'servers.online': 'Online',
+  'servers.offline': 'Offline',
+  'servers.players': '{online}/{max} jucători',
+  'servers.clickTest': 'Apasă Testează pentru a verifica',
+  'servers.empty': 'Niciun server. Adaugă unul mai sus.',
+
+  // settings page
+  'settings.title': 'Setări',
+  'settings.defaultMaxMemory': 'Memorie maximă implicită (MB)',
+  'settings.defaultMinMemory': 'Memorie minimă implicită (MB)',
+  'settings.autoSwitchLogs': 'Comută automat la fila Jurnale după pornire',
+  'settings.save': 'Salvează setările',
+  'settings.language': 'Limbă',
+  'settings.languageDesc': 'Limba interfeței — modificările se aplică instant',
+  'settings.saved': 'Setările au fost salvate',
+};
+
+export default ro;

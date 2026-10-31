@@ -352,3 +352,30 @@ tbody tr:last-child td { border-bottom: none; }
 .gap-12     { gap: 12px; }
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
+
+/* ── RTL (Arabic / Hebrew / Persian / Urdu) ───────── */
+/* CSS grid & flex mirror automatically once dir="rtl" is set on <html>;
+   only physical borders and inherently-LTR content need overriding. */
+html[dir='rtl'] .nav {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+
+/* Game logs, file paths and maven coordinates are always LTR. */
+html[dir='rtl'] .log,
+html[dir='rtl'] .log * {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: plaintext;
+}
+
+html[dir='rtl'] input,
+html[dir='rtl'] select,
+html[dir='rtl'] textarea {
+  text-align: right;
+}
+
+html[dir='rtl'] input[type='number'] {
+  direction: ltr;
+  text-align: left;
+}

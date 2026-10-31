@@ -13,6 +13,7 @@ export interface Instance {
   memory_max_mb: number;
   jvm_extra_args: string[];
   account_name: string;
+  language: string | null;
   last_played_at: number | null;
   play_count: number;
   created_at: number;
@@ -23,6 +24,13 @@ export interface LaunchResult {
   success: boolean;
   pid: number | null;
   message: string;
+}
+
+/** 一条 Minecraft 游戏内语言（后端内置 142 种，含克林贡语等小众语言）。 */
+export interface GameLanguage {
+  code: string;
+  name: string;
+  region: string;
 }
 
 export interface JavaVersion {

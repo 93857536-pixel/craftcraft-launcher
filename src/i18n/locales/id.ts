@@ -1,0 +1,102 @@
+/** Bahasa Indonesia */
+const id = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'Instans',
+  'nav.newInstance': 'Instans Baru',
+  'nav.java': 'Java',
+  'nav.logs': 'Log',
+  'nav.servers': 'Server',
+  'nav.settings': 'Pengaturan',
+
+  // generic actions
+  'common.cancel': 'Batal',
+  'common.create': 'Buat',
+  'common.save': 'Simpan',
+  'common.delete': 'Hapus',
+  'common.del': 'Hapus',
+  'common.edit': 'Edit',
+  'common.launch': 'Jalankan',
+  'common.all': 'Semua',
+  'common.filter': 'Filter',
+  'common.add': 'Tambah',
+  'common.test': 'Uji',
+  'common.refresh': 'Muat ulang',
+  'common.downloading': 'Mengunduh…',
+  'common.optional': 'opsional',
+
+  // instances
+  'instances.title': 'Instans',
+  'instances.count_one': '{n} instans',
+  'instances.count_other': '{n} instans',
+  'instances.filteredBy': 'difilter: {tag}',
+  'instances.empty.title': 'Belum ada instans',
+  'instances.empty.desc': 'Buat instans Minecraft pertama Anda untuk memulai.',
+  'instances.deleteConfirm': 'Hapus instans ini? Data game akan dipertahankan.',
+  'instances.launchFailed': 'Gagal menjalankan: {msg}',
+  'instances.addTag': 'Tambah tag…',
+  'instances.newCard': 'Instans Baru',
+
+  // create-instance wizard
+  'wizard.title': 'Buat Instans',
+  'wizard.name': 'Nama',
+  'wizard.namePlaceholder': 'Dunia Survival Saya',
+  'wizard.version': 'Versi',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'Tidak ada di manifes — dipakai apa adanya',
+  'wizard.loader': 'Loader',
+  'wizard.accountName': 'Nama Akun',
+  'wizard.maxMemory': 'Memori Maksimum (MB)',
+  'wizard.javaRuntime': 'Runtime Java',
+  'wizard.jdkAvailable': '{n} JDK tersedia',
+  'wizard.noJdk': 'JDK tidak ditemukan — unduh di bawah',
+  'wizard.createFailed': 'Gagal membuat: {msg}',
+  'wizard.create': 'Buat Instans',
+
+  // java runtime page
+  'java.title': 'Runtime Java',
+  'java.downloadTemurin': 'Unduh Temurin',
+  'java.installed': 'JDK Terpasang',
+  'java.col.version': 'Versi',
+  'java.col.path': 'Path',
+  'java.col.vendor': 'Vendor',
+  'java.col.arch': 'Arsitektur',
+  'java.col.type': 'Tipe',
+  'java.managed': 'Terkelola',
+  'java.system': 'Sistem',
+  'java.empty': 'JDK tidak ditemukan. Unduh di atas.',
+  'java.legacyNote': 'Minecraft 1.12 dan lebih lama memerlukan Java 8. Di Apple Silicon pasang build Java 8 x86_64 (berjalan lewat Rosetta 2).',
+
+  // logs page
+  'logs.title': 'Log',
+  'logs.noSelection': 'Belum ada instans dipilih',
+  'logs.noSelectionDesc': 'Jalankan instans untuk melihat log-nya di sini.',
+  'logs.createInstance': '+ Buat Instans',
+  'logs.selectInstance': 'Pilih {name}',
+  'logs.autoRefresh': 'Muat ulang otomatis',
+  'logs.empty': 'Belum ada log. Jalankan game untuk membuatnya.',
+
+  // servers page
+  'servers.title': 'Server',
+  'servers.addServer': 'Tambah Server',
+  'servers.address': 'alamat:port',
+  'servers.name': 'nama (opsional)',
+  'servers.online': 'Online',
+  'servers.offline': 'Offline',
+  'servers.players': '{online}/{max} pemain',
+  'servers.clickTest': 'Klik Uji untuk memeriksa',
+  'servers.empty': 'Tidak ada server. Tambahkan di atas.',
+
+  // settings page
+  'settings.title': 'Pengaturan',
+  'settings.defaultMaxMemory': 'Memori Maksimum Default (MB)',
+  'settings.defaultMinMemory': 'Memori Minimum Default (MB)',
+  'settings.autoSwitchLogs': 'Otomatis beralih ke tab Log setelah dijalankan',
+  'settings.save': 'Simpan Pengaturan',
+  'settings.language': 'Bahasa',
+  'settings.languageDesc': 'Bahasa antarmuka — perubahan langsung berlaku',
+  'settings.saved': 'Pengaturan disimpan',
+};
+
+export default id;

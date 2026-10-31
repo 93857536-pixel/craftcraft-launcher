@@ -7,6 +7,10 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    // Bind IPv4 loopback explicitly. Vite's default ("localhost") resolves to ::1
+    // on this machine, which makes http://127.0.0.1:5173 (and any tooling that
+    // probes IPv4) fail with "connection refused".
+    host: '127.0.0.1',
   },
   build: {
     outDir: 'dist',

@@ -1,5 +1,6 @@
 use anyhow::{Context, Result};
 use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use std::fs;
 use std::path::{Path, PathBuf};
 use futures_util::StreamExt;
@@ -37,20 +38,37 @@ pub struct DownloadRule {
     pub os: Option<RuleOs>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+/// 单个平台的原生库描述: 可能是字符串 ("natives-linux") 或对象 ({"classifier": "...", "name": "..."})
+#[derive(Debug, Clone, Serialize, Default)]
 pub struct NativePlatform {
     pub name: Option<String>,
     pub classifier: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, Default)]
-pub struct NativePlatforms {
-    #[serde(default)]
-    pub linux: Option<NativePlatform>,
-    #[serde(default)]
-    pub windows: Option<NativePlatform>,
-    #[serde(default)]
-    pub osx: Option<NativePlatform>,
+impl<'de> Deserialize<'de> for NativePlatform {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        // Try deserializing as a string first (legacy format like "natives-linux").
+        // If that fails, try as an object (modern format with name/classifier fields).
+        let value = serde_json::Value::deserialize(deserializer)?;
+        match value {
+            serde_json::Value::String(s) => Ok(NativePlatform {
+                name: None,
+                classifier: Some(s),
+            }),
+            serde_json::Value::Object(map) => {
+                let name = map.get("name").and_then(|v| v.as_str()).map(|s| s.to_string());
+                let classifier = map.get("classifier").and_then(|v| v.as_str()).map(|s| s.to_string());
+                Ok(NativePlatform { name, classifier })
+            }
+            _ => Ok(NativePlatform {
+                name: None,
+                classifier: None,
+            }),
+        }
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -60,21 +78,88 @@ pub struct LibraryFile {
     pub path: Option<String>,
 }
 
+/// 1.7.x 老版本的 natives 格式: {linux: "natives-linux", osx: "natives-osx", ...}
+/// 现代版本格式: {"name": "...", "classifier": "..."}
+/// 两者都支持: 字段值可以是字符串或对象。
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+pub struct NativePlatforms {
+    pub linux: Option<NativePlatform>,
+    pub windows: Option<NativePlatform>,
+    pub osx: Option<NativePlatform>,
+}
+
+impl NativePlatforms {
+    /// Look up a platform by os-tag ("osx"|"linux"|"windows") with arch fallback
+    /// ("arm64" → generic).
+    pub fn get(&self, os: &str) -> Option<&NativePlatform> {
+        match os {
+            "osx" | "macos" => self.osx.as_ref(),
+            "linux" => self.linux.as_ref(),
+            "windows" => self.windows.as_ref(),
+            _ => None,
+        }
+    }
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct LibraryDownloads {
+    #[serde(default)]
     pub artifact: Option<LibraryFile>,
+    /// Legacy per-classifier downloads (versions ≤ 1.12.2).
+    #[serde(default, rename = "classifiers")]
+    pub classifiers: Option<HashMap<String, LibraryFile>>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
 pub struct Library {
     pub name: Option<String>,
     pub url: Option<String>,
-    #[serde(default)]
+    #[serde(default, deserialize_with = "parse_natives_field")]
     pub natives: Option<NativePlatforms>,
     #[serde(default)]
     pub downloads: Option<LibraryDownloads>,
     #[serde(default)]
     pub rules: Option<Vec<DownloadRule>>,
+}
+
+/// Custom deserializer for the `natives` field in Library.
+/// Accepts both modern object form {"linux": {"name":..., "classifier":...}} and legacy string form {"linux": "natives-linux"}.
+fn parse_natives_field<'de, D>(deserializer: D) -> Result<Option<NativePlatforms>, D::Error>
+where
+    D: serde::Deserializer<'de>,
+{
+    let value = serde_json::Value::deserialize(deserializer)?;
+    match value {
+        serde_json::Value::Object(map) => {
+            // Modern form: parse each platform field
+            let linux = parse_single_platform(map.get("linux"))
+                .map_err(|e| serde::de::Error::custom(e.to_string()))?;
+            let windows = parse_single_platform(map.get("windows"))
+                .map_err(|e| serde::de::Error::custom(e.to_string()))?;
+            let osx = parse_single_platform(map.get("osx"))
+                .map_err(|e| serde::de::Error::custom(e.to_string()))?;
+            Ok(Some(NativePlatforms { linux, windows, osx }))
+        }
+        serde_json::Value::Null => Ok(None),
+        _ => Ok(None),
+    }
+}
+
+/// Parse a single platform entry: either a string ("natives-linux") or an object.
+fn parse_single_platform(value: Option<&serde_json::Value>) -> Result<Option<NativePlatform>, serde_json::Error> {
+    match value {
+        Some(serde_json::Value::String(s)) => {
+            Ok(Some(NativePlatform {
+                name: None,
+                classifier: Some(s.clone()),
+            }))
+        }
+        Some(serde_json::Value::Object(_)) => {
+            let p: NativePlatform = serde_json::from_value(value.unwrap().clone())?;
+            Ok(Some(p))
+        }
+        _ => Ok(None),
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, Default)]
@@ -137,6 +222,19 @@ pub struct VersionJson {
         default
     )]
     pub download_2: Option<DownloadBlock>,
+    /// Mojang's own JVM requirement (`javaVersion.majorVersion`). This is the
+    /// authoritative source for which Java a version needs — 26.3 wants 25,
+    /// 1.16.5 wants 8, 1.17.1 wants 16, etc.
+    #[serde(rename = "javaVersion", alias = "java_version", default)]
+    pub java_version: Option<JavaVersionRequirement>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, Default)]
+pub struct JavaVersionRequirement {
+    #[serde(default)]
+    pub component: Option<String>,
+    #[serde(rename = "majorVersion", alias = "major_version", default)]
+    pub major_version: Option<u32>,
 }
 
 impl VersionJson {
@@ -169,9 +267,12 @@ impl VersionJson {
             .unwrap_or_else(|| "net.minecraft.client.main.Main".to_string())
     }
 
-    /// Parse `<major>` out of a `javaVersion.majorVersion` like "21" (used for logging only).
+    /// Mojang's declared Java major version for this game version, if any.
     pub fn required_java_major(&self) -> Option<String> {
-        None
+        self.java_version
+            .as_ref()
+            .and_then(|j| j.major_version)
+            .map(|m| m.to_string())
     }
 }
 
@@ -305,6 +406,32 @@ impl MojangClient {
         Ok(target)
     }
 
+    /// Ensure a single library file exists locally, downloading it if needed.
+    /// Returns false (instead of erroring) when the artifact is gone upstream —
+    /// a handful of old libraries such as `tv.twitch:twitch-external-platform`
+    /// have been pulled from Mojang's Maven and are not needed to boot.
+    async fn ensure_library_file(
+        &self,
+        url: &str,
+        jar: &Path,
+        name: &str,
+        step: u32,
+    ) -> bool {
+        if jar.exists() {
+            return true;
+        }
+        if let Some(parent) = jar.parent() {
+            fs::create_dir_all(parent).ok();
+        }
+        match self.stream_download(url, jar, "library", step).await {
+            Ok(()) => true,
+            Err(e) => {
+                eprintln!("[library] WARN: skipping unavailable library {name}: {e}");
+                false
+            }
+        }
+    }
+
     /// Ensure all classpath libraries are present (downloads missing ones), then unpack
     /// native jars into `natives_dir`. Returns classpath entries in version-json order.
     pub async fn ensure_libraries(
@@ -330,50 +457,99 @@ impl MojangClient {
                 Some(n) => n.clone(),
                 None => continue,
             };
-            let is_natives = name.contains("natives-") || lib.natives.is_some();
             // maven coordinates: group:artifact:version[:classifier][@ext]
             let coord = name.split('@').next().unwrap();
             let parts: Vec<&str> = coord.split(':').collect();
             if parts.len() < 3 {
                 continue;
             }
-            let mut file_path = parts[1].to_string(); // fall back to artifact name
-            let mut url: Option<String> = None;
-            if let Some(artifact) = lib.downloads.as_ref().and_then(|d| d.artifact.as_ref()) {
-                if let Some(p) = &artifact.path {
-                    file_path = p
-                        .rsplit_once('/')
-                        .map(|(_, rest)| rest)
-                        .unwrap_or(p.as_str())
-                        .to_string();
-                }
-                url = Some(artifact.url.clone());
-            }
-            if url.is_none() {
-                if let Some(u) = &lib.url {
-                    url = Some(u.clone());
+            let group = parts[0];
+            let artifact = parts[1];
+            let version = parts[2];
+            let classifier = parts.get(3).map(|s| s.to_string()).unwrap_or_default();
+            let ext = "jar";
+
+            // Determine file path and download URL.
+            let os_tag = match std::env::consts::OS {
+                "macos" | "macos_xnu" => "osx",
+                other => other,
+            };
+            let arch_token = match std::env::consts::ARCH {
+                "aarch64" => "arm64",
+                other => other,
+            };
+
+            // ---- Phase 1: main artifact → classpath ----
+            // Present in every modern library, and in the *main* jars of legacy
+            // versions (lwjgl 2.x, jinput, ...). Its absence means the library
+            // only exists as per-platform classifier jars (lwjgl-platform).
+            if let Some(artifact_dl) = lib.downloads.as_ref().and_then(|d| d.artifact.as_ref()) {
+                let clf_suffix = if classifier.is_empty() {
+                    String::new()
                 } else {
-                    // jdk-bundled / no-artifact library
-                    if !is_natives {
-                        classpath.push(self.libraries_dir.join(file_path.clone()));
+                    format!("-{classifier}")
+                };
+                let fp = artifact_dl.path.clone().unwrap_or_else(|| {
+                    format!("{group}/{artifact}/{version}/{artifact}-{version}{clf_suffix}.{ext}")
+                });
+                let jar = self.libraries_dir.join(&fp);
+                if self.ensure_library_file(&artifact_dl.url, &jar, &name, step).await {
+                    classpath.push(jar);
+                }
+            }
+
+            // ---- Phase 2: native classifier jar → unpack into natives dir ----
+            // Legacy layout (≤1.18.2) declares a `natives` map whose per-OS value
+            // names the classifier to fetch from `downloads.classifiers`. The main
+            // jar stays on the classpath (handled above); this jar only carries
+            // dylibs/dlls/so files.
+            if let Some(natives) = lib.natives.as_ref() {
+                if let Some(classifiers) = lib.downloads.as_ref().and_then(|d| d.classifiers.as_ref()) {
+                    let base = natives
+                        .get(os_tag)
+                        .and_then(|p| p.classifier.clone())
+                        .unwrap_or_default();
+                    if !base.is_empty() {
+                        // `natives-windows-${arch}` style templates.
+                        let expanded = base.replace("${arch}", arch_token);
+                        // On arm64 prefer an explicit arm64 build when Mojang ships one.
+                        let mut wanted: Vec<String> = Vec::new();
+                        if arch_token == "arm64" {
+                            wanted.push(format!("{expanded}-arm64"));
+                        }
+                        wanted.push(expanded.clone());
+                        for cand in wanted {
+                            if let Some(dl) = classifiers.get(&cand) {
+                                let fp = dl.path.clone().unwrap_or_else(|| {
+                                    format!("{group}/{artifact}/{version}/{artifact}-{version}-{cand}.{ext}")
+                                });
+                                let jar = self.libraries_dir.join(&fp);
+                                if self.ensure_library_file(&dl.url, &jar, &name, step).await {
+                                    native_jars.push(jar);
+                                }
+                                break;
+                            }
+                        }
                     }
-                    continue;
                 }
-            }
-            let url = url.unwrap();
-            let jar = self.libraries_dir.join(&file_path);
-            if !jar.exists() {
-                if let Some(parent) = jar.parent() {
-                    fs::create_dir_all(parent).ok();
+            } else if lib.downloads.as_ref().and_then(|d| d.artifact.as_ref()).is_none() {
+                // ---- Phase 3: classifier-only entry, no downloads at all ----
+                // Reconstruct a maven URL so the jar still lands on the classpath.
+                let clf_suffix = if classifier.is_empty() {
+                    String::new()
+                } else {
+                    format!("-{classifier}")
+                };
+                let jar_name = format!("{artifact}-{version}{clf_suffix}.{ext}");
+                let url = format!(
+                    "https://libraries.minecraft.net/{group}/{artifact}/{version}/{jar_name}"
+                );
+                let jar = self
+                    .libraries_dir
+                    .join(format!("{group}/{artifact}/{version}/{jar_name}"));
+                if self.ensure_library_file(&url, &jar, &name, step).await {
+                    classpath.push(jar);
                 }
-                self.stream_download(&url, &jar, "library", step)
-                    .await
-                    .with_context(|| format!("library {name} from {url}"))?;
-            }
-            if is_natives {
-                native_jars.push(jar);
-            } else {
-                classpath.push(jar);
             }
         }
         Self::unpack_natives(&native_jars, natives_dir);
@@ -494,9 +670,9 @@ impl MojangClient {
                     Err(_) => continue,
                 };
                 let Some(zname) = file.enclosed_name() else { continue };
-                let target = natives_dir.join(zname);
+                // 扁平化: 只提取文件名到 natives_dir, 不保留嵌套目录结构
+                let target = natives_dir.join(zname.file_name().unwrap());
                 if file.is_dir() {
-                    let _ = fs::create_dir_all(&target);
                     continue;
                 }
                 if let Some(parent) = target.parent() {

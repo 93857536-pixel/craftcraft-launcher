@@ -1,24 +1,26 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import InstancesPage from './pages/InstancesPage';
 import WizardPage from './pages/WizardPage';
 import JavaPage from './pages/JavaPage';
 import LogPage from './pages/LogPage';
 import ServersPage from './pages/ServersPage';
 import SettingsPage from './pages/SettingsPage';
+import { useT } from './i18n';
 import type { AppSettings } from './types';
 
 type Tab = 'instances' | 'new' | 'java' | 'logs' | 'servers' | 'settings';
 
-const NAV_ITEMS: { id: Tab; label: string }[] = [
-  { id: 'instances', label: 'Instances' },
-  { id: 'new',       label: 'New Instance' },
-  { id: 'java',      label: 'Java' },
-  { id: 'logs',      label: 'Logs' },
-  { id: 'servers',   label: 'Servers' },
-  { id: 'settings',  label: 'Settings' },
+const NAV_KEYS: { id: Tab; key: string }[] = [
+  { id: 'instances', key: 'nav.instances' },
+  { id: 'new',       key: 'nav.newInstance' },
+  { id: 'java',      key: 'nav.java' },
+  { id: 'logs',      key: 'nav.logs' },
+  { id: 'servers',   key: 'nav.servers' },
+  { id: 'settings',  key: 'nav.settings' },
 ];
 
 export default function App() {
+  const t = useT();
   const [tab, setTab] = useState<Tab>('instances');
   const [selId, setSelId] = useState<string | null>(null);
   const [settings, setSettings] = useState<AppSettings>({
@@ -51,16 +53,16 @@ export default function App() {
       <nav className="nav">
         <div className="brand">
           <div className="brand-icon">⛏</div>
-          CraftCraft
+          {t('app.name')}
         </div>
         <div className="nav-items">
-          {NAV_ITEMS.map((item) => (
+          {NAV_KEYS.map((item) => (
             <button
               key={item.id}
               className={`nav-btn${tab === item.id ? ' active' : ''}`}
               onClick={() => setTab(item.id)}
             >
-              {item.label}
+              {t(item.key)}
               {item.id === 'instances' && instances > 0 && (
                 <span className="badge accent" style={{ marginLeft: 'auto', fontSize: 10 }}>{instances}</span>
               )}

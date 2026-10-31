@@ -1,0 +1,102 @@
+/** Ελληνικά */
+const el = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'Στιγμιότυπα',
+  'nav.newInstance': 'Νέο στιγμιότυπο',
+  'nav.java': 'Java',
+  'nav.logs': 'Καταγραφές',
+  'nav.servers': 'Διακομιστές',
+  'nav.settings': 'Ρυθμίσεις',
+
+  // generic actions
+  'common.cancel': 'Άκυρο',
+  'common.create': 'Δημιουργία',
+  'common.save': 'Αποθήκευση',
+  'common.delete': 'Διαγραφή',
+  'common.del': 'Διαγρ.',
+  'common.edit': 'Επεξεργασία',
+  'common.launch': 'Εκκίνηση',
+  'common.all': 'Όλα',
+  'common.filter': 'Φίλτρο',
+  'common.add': 'Προσθήκη',
+  'common.test': 'Δοκιμή',
+  'common.refresh': 'Ανανέωση',
+  'common.downloading': 'Λήψη…',
+  'common.optional': 'προαιρετικό',
+
+  // instances
+  'instances.title': 'Στιγμιότυπα',
+  'instances.count_one': '{n} στιγμιότυπο',
+  'instances.count_other': '{n} στιγμιότυπα',
+  'instances.filteredBy': 'φιλτράρισμα: {tag}',
+  'instances.empty.title': 'Δεν υπάρχουν στιγμιότυπα ακόμη',
+  'instances.empty.desc': 'Δημιουργήστε το πρώτο σας στιγμιότυπο Minecraft για να ξεκινήσετε.',
+  'instances.deleteConfirm': 'Διαγραφή αυτού του στιγμιότυπου; Τα δεδομένα του παιχνιδιού θα διατηρηθούν.',
+  'instances.launchFailed': 'Η εκκίνηση απέτυχε: {msg}',
+  'instances.addTag': 'Προσθήκη ετικέτας…',
+  'instances.newCard': 'Νέο στιγμιότυπο',
+
+  // create-instance wizard
+  'wizard.title': 'Δημιουργία στιγμιότυπου',
+  'wizard.name': 'Όνομα',
+  'wizard.namePlaceholder': 'Ο κόσμος επιβίωσής μου',
+  'wizard.version': 'Έκδοση',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'Δεν υπάρχει στο manifest — χρησιμοποιείται ως έχει',
+  'wizard.loader': 'Φορτωτής',
+  'wizard.accountName': 'Όνομα λογαριασμού',
+  'wizard.maxMemory': 'Μέγιστη μνήμη (MB)',
+  'wizard.javaRuntime': 'Περιβάλλον εκτέλεσης Java',
+  'wizard.jdkAvailable': 'Διαθέσιμα JDK: {n}',
+  'wizard.noJdk': 'Δεν βρέθηκε JDK — κατεβάστε ένα παρακάτω',
+  'wizard.createFailed': 'Η δημιουργία απέτυχε: {msg}',
+  'wizard.create': 'Δημιουργία στιγμιότυπου',
+
+  // java runtime page
+  'java.title': 'Περιβάλλον εκτέλεσης Java',
+  'java.downloadTemurin': 'Λήψη Temurin',
+  'java.installed': 'Εγκατεστημένα JDK',
+  'java.col.version': 'Έκδοση',
+  'java.col.path': 'Διαδρομή',
+  'java.col.vendor': 'Προμηθευτής',
+  'java.col.arch': 'Αρχιτεκτονική',
+  'java.col.type': 'Τύπος',
+  'java.managed': 'Διαχειριζόμενο',
+  'java.system': 'Συστήματος',
+  'java.empty': 'Δεν βρέθηκαν JDK. Κατεβάστε ένα παραπάνω.',
+  'java.legacyNote': 'Το Minecraft 1.12 και οι παλαιότερες εκδόσεις απαιτούν Java 8. Σε Apple Silicon εγκαταστήστε έκδοση Java 8 για x86_64 (εκτελείται μέσω Rosetta 2).',
+
+  // logs page
+  'logs.title': 'Καταγραφές',
+  'logs.noSelection': 'Δεν έχει επιλεγεί στιγμιότυπο',
+  'logs.noSelectionDesc': 'Εκκινήστε ένα στιγμιότυπο για να δείτε την καταγραφή του εδώ.',
+  'logs.createInstance': '+ Δημιουργία στιγμιότυπου',
+  'logs.selectInstance': 'Επιλογή {name}',
+  'logs.autoRefresh': 'Αυτόματη ανανέωση',
+  'logs.empty': 'Δεν υπάρχει καταγραφή ακόμη. Εκκινήστε το παιχνίδι για να δημιουργηθεί.',
+
+  // servers page
+  'servers.title': 'Διακομιστές',
+  'servers.addServer': 'Προσθήκη διακομιστή',
+  'servers.address': 'διεύθυνση:θύρα',
+  'servers.name': 'όνομα (προαιρετικό)',
+  'servers.online': 'Σε σύνδεση',
+  'servers.offline': 'Εκτός σύνδεσης',
+  'servers.players': '{online}/{max} παίκτες',
+  'servers.clickTest': 'Πατήστε Δοκιμή για έλεγχο',
+  'servers.empty': 'Δεν υπάρχουν διακομιστές. Προσθέστε έναν παραπάνω.',
+
+  // settings page
+  'settings.title': 'Ρυθμίσεις',
+  'settings.defaultMaxMemory': 'Προεπιλεγμένη μέγιστη μνήμη (MB)',
+  'settings.defaultMinMemory': 'Προεπιλεγμένη ελάχιστη μνήμη (MB)',
+  'settings.autoSwitchLogs': 'Αυτόματη μετάβαση στην καρτέλα Καταγραφές μετά την εκκίνηση',
+  'settings.save': 'Αποθήκευση ρυθμίσεων',
+  'settings.language': 'Γλώσσα',
+  'settings.languageDesc': 'Γλώσσα διεπαφής — οι αλλαγές εφαρμόζονται αμέσως',
+  'settings.saved': 'Οι ρυθμίσεις αποθηκεύτηκαν',
+};
+
+export default el;

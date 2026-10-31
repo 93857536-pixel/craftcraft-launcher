@@ -214,8 +214,18 @@ pub fn build_launch_args_with_natives(
         format!("-XX:MaxMetaspaceSize={}m", (instance.memory_max_mb / 4).max(256)),
     ];
 
-    let Some(args_block) = version_json.arguments.as_ref() else {
-        anyhow::bail!("version json has no arguments block");
+    // 1.7.x 老版本可能没有 arguments 块, 但有 minecraftArguments
+    let args_block = match version_json.arguments.as_ref() {
+        Some(a) => a,
+        None => {
+            // Fallback: create empty args_block for versions that only have minecraftArguments
+            if version_json.minecraft_arguments.is_some() {
+                use crate::services::mojang::ArgumentsBlock;
+                &ArgumentsBlock { game: None, jvm: None }
+            } else {
+                anyhow::bail!("version json has no arguments block");
+            }
+        }
     };
 
     if let Some(jvm) = &args_block.jvm {
@@ -254,8 +264,34 @@ pub fn build_launch_args_with_natives(
         game_args.push("--username".into());
         game_args.push(instance.account_name.clone());
     }
+    // 游戏内语言：`--language <locale>`。1.6+ 才认这个参数（更老的版本会忽略未知参数，
+    // 但为稳妥起见只在支持的版本上追加）。
+    if let Some(lang) = instance
+        .language
+        .as_deref()
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+    {
+        if language_arg_supported(&instance.version) && !game_args.iter().any(|a| a == "--language") {
+            game_args.push("--language".into());
+            game_args.push(lang.replace('-', "_").to_ascii_lowercase());
+        }
+    }
     jvm_args.extend(instance.jvm_extra_args.clone());
     Ok((jvm_args, game_args))
+}
+
+/// `--language` 从 Minecraft 1.6 开始被游戏识别；更早的版本没有内置多语言。
+fn language_arg_supported(mc_version: &str) -> bool {
+    let clean = mc_version.split('-').next().unwrap_or(mc_version).trim();
+    // 新版本命名（21w44a / 26.3 / 24.1）都支持
+    if !clean.starts_with("1.") {
+        return true;
+    }
+    let mut it = clean.split('.');
+    let major: u32 = it.next().and_then(|s| s.parse().ok()).unwrap_or(1);
+    let minor: u32 = it.next().and_then(|s| s.parse().ok()).unwrap_or(0);
+    major > 1 || minor >= 6
 }
 
 pub async fn launch(
@@ -271,27 +307,58 @@ pub async fn launch(
     };
     let _ = std::fs::create_dir_all(&game_dir);
 
-    // 1. resolve java
+    // 1. version metadata first — it declares which Java the game needs.
+    let version_json = state.mojang.get_version_json(&instance.version).await?;
+
+    // 2. resolve java (Mojang's javaVersion wins over the UI default)
     let java_path: PathBuf = match &instance.java_path {
         Some(p) => PathBuf::from(p),
         None => {
             let mgr = crate::services::java_manager::JavaManager::new();
-            let javas = mgr.list()?;
+            let rec = crate::models::java::JavaRecommendation::from_version_json(
+                &instance.version,
+                version_json.required_java_major().as_deref(),
+            );
             let want = instance
                 .java_version
-                .as_deref()
-                .unwrap_or("21");
+                .clone()
+                .unwrap_or_else(|| rec.recommended_java.clone());
+            // Apple Silicon + pre-1.19 → the JVM itself must be x86_64 (Rosetta 2),
+            // because those releases only ship x86_64 lwjgl natives.
+            let force_x64 = crate::models::java::needs_x64_jvm(&instance.version);
+            let javas = mgr.list()?;
+            let arch_ok = |p: &str| !force_x64 || crate::models::java::binary_arch(p) == "x86_64";
+            let major =
+                |j: &crate::models::java::JavaVersion| {
+                    crate::models::java::major_of(&j.version).unwrap_or(u32::MAX)
+                };
+            // 兜底也只能用「版本够用」的 JDK：宁可装新的，也绝不退到更低版本，
+            // 否则就是 UnsupportedClassVersionError（Java 8 跑 1.18.2）。
+            let ok = |j: &crate::models::java::JavaVersion| {
+                arch_ok(&j.path) && crate::models::java::satisfies_requirement(&j.version, &want)
+            };
             let found = javas
                 .iter()
-                .find(|j| j.version.starts_with(want))
-                .or_else(|| javas.iter().find(|j| j.is_managed))
-                .ok_or_else(|| anyhow::anyhow!("no Java found on this system - use the Java tab to install one"))?;
-            PathBuf::from(&found.path)
+                .find(|j| j.matches_release(&want) && arch_ok(&j.path))
+                .or_else(|| {
+                    javas
+                        .iter()
+                        .filter(|j| j.is_managed && ok(j))
+                        .min_by_key(|j| major(j))
+                })
+                .or_else(|| javas.iter().filter(|j| ok(j)).min_by_key(|j| major(j)));
+            match found {
+                Some(j) => PathBuf::from(&j.path),
+                None => {
+                    // Nothing suitable installed — fetch the right JVM on demand.
+                    let j = mgr.install_arch(&want, force_x64).await?;
+                    PathBuf::from(&j.path)
+                }
+            }
         }
     };
 
-    // 2. download game files
-    let version_json = state.mojang.get_version_json(&instance.version).await?;
+    // 3. download game files
     let client_jar = state.mojang.ensure_client_jar(&instance.version).await?;
     let natives_dir = game_dir.join("natives");
     let libraries: Vec<PathBuf> = state
@@ -334,6 +401,13 @@ pub async fn launch(
 
     let mut cmd = Command::new(&java_path);
     cmd.args(&jvm_args);
+    // 1.13+ versions use the jvmArguments block to set -Djava.library.path.
+    // Pre-1.13 (1.7.x–1.12.x) did NOT set it in the version JSON, so we must
+    // inject it ourselves here for legacy versions that unpack native jars.
+    if version_json.arguments.is_none() && version_json.minecraft_arguments.is_some() {
+        // Legacy path: add the flag before the main class.
+        cmd.arg(format!("-Djava.library.path={}", natives_dir.display()));
+    }
     cmd.arg(&main_class);
     cmd.args(&game_args);
     cmd.current_dir(&game_dir);
@@ -372,4 +446,108 @@ pub fn read_log_tail(instance_id: &str, lines: u32) -> Result<Vec<String>> {
     let all: Vec<String> = content.lines().map(|l| l.to_string()).collect();
     let start = all.len().saturating_sub(lines as usize);
     Ok(all[start..].to_vec())
+}
+
+/// Build a human-readable preview of the launch command (for debugging/transparency).
+pub fn build_launch_args_debug(instance: &Instance) -> Result<String, String> {
+    let java_path = instance
+        .java_path
+        .as_ref()
+        .ok_or("No Java path configured")?;
+    let sep = if cfg!(windows) { ";" } else { ":" };
+    let cp = format!("{}/client.jar{}", instance.game_directory, sep);
+    let natives = format!("{}/natives", instance.game_directory);
+    let assets = format!("{}/assets", instance.game_directory);
+    let args: Vec<String> = vec![
+        format!("-Xmx{}M", instance.memory_max_mb),
+        format!("-Xms{}M", instance.memory_min_mb),
+        format!("-Djava.library.path={}", natives),
+        format!("-Dminecraft.assets.root={}", assets),
+        "-Dfml.ignoreInvalidMinecraftCertificates=true".to_string(),
+        "-Dfml.ignorePatchDiscrepancies=true".to_string(),
+        format!("-Dminecraft.launcher.version=CraftCraft Launcher v0.1.0"),
+        format!("-Dminecraft.launcher.brand=CraftCraft Launcher"),
+        format!("-Dminecraft.client.name={}", instance.account_name),
+        format!("-Dminecraft.client.id={}", "offline"),
+    ];
+    let jvm = instance.jvm_extra_args.clone();
+    let all_args: Vec<String> = args.iter().chain(jvm.iter()).cloned().collect();
+    Ok(format!(
+        "{} {} {}",
+        java_path,
+        all_args.join(" "),
+        format!("{}{}{}{}", sep, cp, sep, "net.minecraft.client.main.Main"),
+    ))
+}
+
+#[cfg(test)]
+mod language_tests {
+    use super::*;
+    use crate::models::instance::Instance;
+    use crate::services::mojang::{AssetsBlock, VersionJson};
+
+    fn minimal_version(mc: &str) -> VersionJson {
+        VersionJson {
+            id: mc.to_string(),
+            main_class: Some("net.minecraft.client.main.Main".into()),
+            minecraft_arguments: Some(
+                "--username ${auth_player_name} --version ${version_name}".into(),
+            ),
+            asset_index: Some(AssetsBlock {
+                id: "test".into(),
+                url: None,
+            }),
+            ..Default::default()
+        }
+    }
+
+    fn args_for(mc: &str, language: Option<&str>) -> Vec<String> {
+        let mut inst = Instance::new("t", mc, "/tmp/t".into());
+        inst.language = language.map(|s| s.to_string());
+        let vj = minimal_version(mc);
+        let (_jvm, game) = build_launch_args_with_natives(
+            &inst,
+            &vj,
+            &PathBuf::from("/tmp/client.jar"),
+            &[],
+            &PathBuf::from("/tmp/assets"),
+            &PathBuf::from("/tmp/natives"),
+        )
+        .expect("args");
+        game
+    }
+
+    #[test]
+    fn injects_language_flag_when_set() {
+        let args = args_for("1.21", Some("tlh_aa"));
+        let pos = args.iter().position(|a| a == "--language");
+        assert!(pos.is_some(), "expected --language in {:?}", args);
+        assert_eq!(args[pos.unwrap() + 1], "tlh_aa");
+    }
+
+    #[test]
+    fn normalises_hyphenated_locale() {
+        let args = args_for("1.21", Some("zh-CN"));
+        let pos = args.iter().position(|a| a == "--language").expect("flag");
+        assert_eq!(args[pos + 1], "zh_cn");
+    }
+
+    #[test]
+    fn omits_flag_when_unset_or_empty() {
+        for lang in [None, Some(""), Some("   ")] {
+            let args = args_for("1.21", lang);
+            assert!(!args.iter().any(|a| a == "--language"), "lang={:?} -> {:?}", lang, args);
+        }
+    }
+
+    #[test]
+    fn skips_flag_for_pre_1_6() {
+        assert!(!language_arg_supported("1.5.2"));
+        assert!(language_arg_supported("1.6.4"));
+        assert!(language_arg_supported("1.7.10"));
+        assert!(language_arg_supported("1.21"));
+        assert!(language_arg_supported("26.3")); // 新版本命名
+        let args = args_for("1.5.2", Some("zh_cn"));
+        assert!(!args.iter().any(|a| a == "--language"));
+    }
 }

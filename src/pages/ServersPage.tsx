@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { listServers, addServer, removeServer, toggleServerFavorite, queryServer } from '../api';
+import { useT } from '../i18n';
 import type { ServerBookmark, ServerStatus } from '../types';
 
 export default function ServersPage() {
+  const t = useT();
   const [items, setItems] = useState<ServerBookmark[]>([]);
   const [status, setStatus] = useState<Record<string, ServerStatus>>({});
   const [addr, setAddr] = useState('');
@@ -27,13 +29,13 @@ export default function ServersPage() {
 
   return (
     <>
-      <div className="page-title">Servers</div>
+      <div className="page-title">{t('servers.title')}</div>
       <div className="card">
-        <div className="card-header"><h2>Add Server</h2></div>
+        <div className="card-header"><h2>{t('servers.addServer')}</h2></div>
         <form onSubmit={(e) => { e.preventDefault(); add(); }} className="flex gap-8">
-          <input placeholder="address:port" value={addr} onChange={(e) => setAddr(e.target.value)} style={{ flex: 1 }} />
-          <input placeholder="name (optional)" value={name} onChange={(e) => setName(e.target.value)} style={{ width: 140 }} />
-          <button type="submit" className="primary" style={{ padding: '6px 14px' }}>Add</button>
+          <input placeholder={t('servers.address')} value={addr} onChange={(e) => setAddr(e.target.value)} style={{ flex: 1 }} />
+          <input placeholder={t('servers.name')} value={name} onChange={(e) => setName(e.target.value)} style={{ width: 140 }} />
+          <button type="submit" className="primary" style={{ padding: '6px 14px' }}>{t('common.add')}</button>
         </form>
       </div>
 
@@ -60,15 +62,15 @@ export default function ServersPage() {
                 {st ? (
                   <div className="text-xs mt-8" style={{ color: 'var(--text-secondary)' }}>
                     {st.reachable
-                      ? <><span className="badge green">Online</span><span style={{ marginLeft: 6 }}>{st.online}/{st.max} players</span></>
-                      : <><span className="badge red">Offline</span><span style={{ marginLeft: 6 }}>{st.error}</span></>}
+                      ? <><span className="badge green">{t('servers.online')}</span><span style={{ marginLeft: 6 }}>{t('servers.players', { online: st.online ?? 0, max: st.max ?? 0 })}</span></>
+                      : <><span className="badge red">{t('servers.offline')}</span><span style={{ marginLeft: 6 }}>{st.error}</span></>}
                   </div>
                 ) : (
-                  <div className="text-xs mt-8" style={{ color: 'var(--text-tertiary)' }}>Click Test to check</div>
+                  <div className="text-xs mt-8" style={{ color: 'var(--text-tertiary)' }}>{t('servers.clickTest')}</div>
                 )}
               </div>
               <button className="secondary" disabled={!!busy} style={{ padding: '3px 10px', fontSize: 11 }} onClick={() => query(s.address)}>
-                {busy === s.address ? '…' : 'Test'}
+                {busy === s.address ? '…' : t('common.test')}
               </button>
               <button className="danger" style={{ padding: '3px 7px', fontSize: 11 }}
                 onClick={() => { removeServer(s.id); setItems((x) => x.filter((i) => i.id !== s.id)); }}>✕</button>
@@ -77,7 +79,7 @@ export default function ServersPage() {
         })}
         {!items.length && (
           <div className="text-muted" style={{ textAlign: 'center', padding: '28px 0', fontSize: 12.5 }}>
-            No servers. Add one above.
+            {t('servers.empty')}
           </div>
         )}
       </div>

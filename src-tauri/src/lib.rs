@@ -25,6 +25,9 @@ pub fn run() {
             commands::read_log_tail,
             // mojang
             commands::list_minecraft_versions,
+            // i18n / game language
+            commands::game_languages,
+            commands::match_game_language,
             // java
             commands::list_java,
             commands::install_java,

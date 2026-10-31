@@ -1,0 +1,102 @@
+/** Türkçe */
+const tr = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'Örnekler',
+  'nav.newInstance': 'Yeni Örnek',
+  'nav.java': 'Java',
+  'nav.logs': 'Günlükler',
+  'nav.servers': 'Sunucular',
+  'nav.settings': 'Ayarlar',
+
+  // generic actions
+  'common.cancel': 'İptal',
+  'common.create': 'Oluştur',
+  'common.save': 'Kaydet',
+  'common.delete': 'Sil',
+  'common.del': 'Sil',
+  'common.edit': 'Düzenle',
+  'common.launch': 'Başlat',
+  'common.all': 'Tümü',
+  'common.filter': 'Filtrele',
+  'common.add': 'Ekle',
+  'common.test': 'Test',
+  'common.refresh': 'Yenile',
+  'common.downloading': 'İndiriliyor…',
+  'common.optional': 'isteğe bağlı',
+
+  // instances
+  'instances.title': 'Örnekler',
+  'instances.count_one': '{n} örnek',
+  'instances.count_other': '{n} örnek',
+  'instances.filteredBy': 'filtrelendi: {tag}',
+  'instances.empty.title': 'Henüz örnek yok',
+  'instances.empty.desc': 'Başlamak için ilk Minecraft örneğini oluştur.',
+  'instances.deleteConfirm': 'Bu örnek silinsin mi? Oyun verileri korunacak.',
+  'instances.launchFailed': 'Başlatma başarısız: {msg}',
+  'instances.addTag': 'Etiket ekle…',
+  'instances.newCard': 'Yeni Örnek',
+
+  // create-instance wizard
+  'wizard.title': 'Örnek Oluştur',
+  'wizard.name': 'Ad',
+  'wizard.namePlaceholder': 'Hayatta Kalma Dünyam',
+  'wizard.version': 'Sürüm',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'Manifestte yok — olduğu gibi kullanılır',
+  'wizard.loader': 'Yükleyici',
+  'wizard.accountName': 'Hesap Adı',
+  'wizard.maxMemory': 'Maks. Bellek (MB)',
+  'wizard.javaRuntime': 'Java Çalışma Zamanı',
+  'wizard.jdkAvailable': '{n} JDK mevcut',
+  'wizard.noJdk': 'JDK bulunamadı — aşağıdan bir tane indir',
+  'wizard.createFailed': 'Oluşturma başarısız: {msg}',
+  'wizard.create': 'Örnek Oluştur',
+
+  // java runtime page
+  'java.title': 'Java Çalışma Zamanı',
+  'java.downloadTemurin': 'Temurin İndir',
+  'java.installed': 'Kurulu JDK\'lar',
+  'java.col.version': 'Sürüm',
+  'java.col.path': 'Yol',
+  'java.col.vendor': 'Sağlayıcı',
+  'java.col.arch': 'Mimari',
+  'java.col.type': 'Tür',
+  'java.managed': 'Yönetilen',
+  'java.system': 'Sistem',
+  'java.empty': 'JDK bulunamadı. Yukarıdan bir tane indir.',
+  'java.legacyNote': 'Minecraft 1.12 ve daha eski sürümler Java 8 gerektirir. Apple Silicon\'da x86_64 Java 8 sürümü kurun (Rosetta 2 ile çalışır).',
+
+  // logs page
+  'logs.title': 'Günlükler',
+  'logs.noSelection': 'Örnek seçilmedi',
+  'logs.noSelectionDesc': 'Günlüğünü burada görmek için bir örnek başlat.',
+  'logs.createInstance': '+ Örnek Oluştur',
+  'logs.selectInstance': '{name} seç',
+  'logs.autoRefresh': 'Otomatik yenile',
+  'logs.empty': 'Henüz günlük yok. Oluşturmak için oyunu başlat.',
+
+  // servers page
+  'servers.title': 'Sunucular',
+  'servers.addServer': 'Sunucu Ekle',
+  'servers.address': 'adres:port',
+  'servers.name': 'ad (isteğe bağlı)',
+  'servers.online': 'Çevrimiçi',
+  'servers.offline': 'Çevrimdışı',
+  'servers.players': '{online}/{max} oyuncu',
+  'servers.clickTest': 'Kontrol etmek için Test\'e tıkla',
+  'servers.empty': 'Sunucu yok. Yukarıdan bir tane ekle.',
+
+  // settings page
+  'settings.title': 'Ayarlar',
+  'settings.defaultMaxMemory': 'Varsayılan Maks. Bellek (MB)',
+  'settings.defaultMinMemory': 'Varsayılan Min. Bellek (MB)',
+  'settings.autoSwitchLogs': 'Başlatmadan sonra otomatik olarak Günlükler sekmesine geç',
+  'settings.save': 'Ayarları Kaydet',
+  'settings.language': 'Dil',
+  'settings.languageDesc': 'Arayüz dili — değişiklikler anında uygulanır',
+  'settings.saved': 'Ayarlar kaydedildi',
+};
+
+export default tr;

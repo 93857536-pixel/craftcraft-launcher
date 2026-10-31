@@ -1,0 +1,102 @@
+/** العربية */
+const ar = {
+  'app.name': 'CraftCraft',
+
+  // navigation
+  'nav.instances': 'النسخ',
+  'nav.newInstance': 'نسخة جديدة',
+  'nav.java': 'Java',
+  'nav.logs': 'السجلات',
+  'nav.servers': 'الخوادم',
+  'nav.settings': 'الإعدادات',
+
+  // generic actions
+  'common.cancel': 'إلغاء',
+  'common.create': 'إنشاء',
+  'common.save': 'حفظ',
+  'common.delete': 'حذف',
+  'common.del': 'حذف',
+  'common.edit': 'تعديل',
+  'common.launch': 'تشغيل',
+  'common.all': 'الكل',
+  'common.filter': 'تصفية',
+  'common.add': 'إضافة',
+  'common.test': 'اختبار',
+  'common.refresh': 'تحديث',
+  'common.downloading': 'جارٍ التنزيل…',
+  'common.optional': 'اختياري',
+
+  // instances
+  'instances.title': 'النسخ',
+  'instances.count_one': 'نسخة {n}',
+  'instances.count_other': '{n} نسخ',
+  'instances.filteredBy': 'تمت التصفية: {tag}',
+  'instances.empty.title': 'لا توجد نسخ بعد',
+  'instances.empty.desc': 'أنشئ أول نسخة Minecraft لديك للبدء.',
+  'instances.deleteConfirm': 'حذف هذه النسخة؟ سيتم الاحتفاظ ببيانات اللعبة.',
+  'instances.launchFailed': 'فشل التشغيل: {msg}',
+  'instances.addTag': 'إضافة وسم…',
+  'instances.newCard': 'نسخة جديدة',
+
+  // create-instance wizard
+  'wizard.title': 'إنشاء نسخة',
+  'wizard.name': 'الاسم',
+  'wizard.namePlaceholder': 'عالمي للبقاء',
+  'wizard.version': 'الإصدار',
+  'wizard.versionPlaceholder': '1.21',
+  'wizard.notInManifest': 'غير موجود في القائمة — يُستخدم كما هو',
+  'wizard.loader': 'المحمّل',
+  'wizard.accountName': 'اسم الحساب',
+  'wizard.maxMemory': 'أقصى ذاكرة (MB)',
+  'wizard.javaRuntime': 'بيئة تشغيل Java',
+  'wizard.jdkAvailable': '{n} JDK متاح',
+  'wizard.noJdk': 'لم يتم العثور على JDK — نزّل واحدًا أدناه',
+  'wizard.createFailed': 'فشل الإنشاء: {msg}',
+  'wizard.create': 'إنشاء نسخة',
+
+  // java runtime page
+  'java.title': 'بيئة تشغيل Java',
+  'java.downloadTemurin': 'تنزيل Temurin',
+  'java.installed': 'حزم JDK المثبّتة',
+  'java.col.version': 'الإصدار',
+  'java.col.path': 'المسار',
+  'java.col.vendor': 'المزوّد',
+  'java.col.arch': 'المعمارية',
+  'java.col.type': 'النوع',
+  'java.managed': 'مُدار',
+  'java.system': 'النظام',
+  'java.empty': 'لم يتم العثور على أي JDK. نزّل واحدًا أعلاه.',
+  'java.legacyNote': 'يحتاج Minecraft 1.12 وما قبله إلى Java 8. على Apple Silicon ثبّت إصدار Java 8 بمعمارية x86_64 (يعمل عبر Rosetta 2).',
+
+  // logs page
+  'logs.title': 'السجلات',
+  'logs.noSelection': 'لم يتم اختيار نسخة',
+  'logs.noSelectionDesc': 'شغّل نسخة لعرض سجلاتها هنا.',
+  'logs.createInstance': '+ إنشاء نسخة',
+  'logs.selectInstance': 'اختر {name}',
+  'logs.autoRefresh': 'تحديث تلقائي',
+  'logs.empty': 'لا يوجد سجل بعد. شغّل اللعبة لتوليد سجل.',
+
+  // servers page
+  'servers.title': 'الخوادم',
+  'servers.addServer': 'إضافة خادم',
+  'servers.address': 'العنوان:المنفذ',
+  'servers.name': 'الاسم (اختياري)',
+  'servers.online': 'متصل',
+  'servers.offline': 'غير متصل',
+  'servers.players': '{online}/{max} لاعب',
+  'servers.clickTest': 'اضغط اختبار للفحص',
+  'servers.empty': 'لا توجد خوادم. أضف واحدًا أعلاه.',
+
+  // settings page
+  'settings.title': 'الإعدادات',
+  'settings.defaultMaxMemory': 'أقصى ذاكرة افتراضية (MB)',
+  'settings.defaultMinMemory': 'أدنى ذاكرة افتراضية (MB)',
+  'settings.autoSwitchLogs': 'التبديل تلقائيًا إلى تبويب السجلات بعد التشغيل',
+  'settings.save': 'حفظ الإعدادات',
+  'settings.language': 'اللغة',
+  'settings.languageDesc': 'لغة الواجهة — تُطبَّق التغييرات فورًا',
+  'settings.saved': 'تم حفظ الإعدادات',
+};
+
+export default ar;
